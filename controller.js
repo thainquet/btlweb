@@ -1,3 +1,6 @@
+const con = require("./connectDB")
+
+
 var controller = {
     getIndex: (req, res) =>{
         try {
@@ -10,6 +13,14 @@ var controller = {
             })
         }
     },
+    getAllEvent : (req, res) => {
+        try {
+
+        }
+        catch (error) {
+
+        }
+    }
     
 }
 
