@@ -1,5 +1,5 @@
 var express = require('express');
-var controller = require('./controller')
+var controller = require('../controller/main.controller')
 
 
 var router = express.Router();
@@ -7,7 +7,7 @@ var router = express.Router();
 
 router.get('/', controller.getIndex);
 
-// router.get('/events/:id', controller.getEventById)
+router.get('/events', controller.getAllEvent)
 
 // router.post('/events/newQuestion', controller.postNew)
 

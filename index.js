@@ -4,7 +4,7 @@ const path = require('path');
 const mysql = require('mysql');
 
 const app = express();
-const routes = require('./routes')
+const routes = require('./src/route/main.routes')
 
 
 app.use(bodyParser.json());
