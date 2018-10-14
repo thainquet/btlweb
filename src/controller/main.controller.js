@@ -1,11 +1,12 @@
 const con = require("../module/module.connectDB")
 const query = require("../module/module.query")
+const path = require('path')
 
 
 var controller = {
     getIndex: (req, res) =>{
         try {
-            res.sendFile(__dirname + '/public/index.html');
+            res.sendFile(path.join(__dirname + '../../../public/login.view.html'));
         }
         catch (error) {
             res.send({
@@ -17,7 +18,8 @@ var controller = {
     getAllEvent : (req, res) => {
         try {
             let sql = "SELECT * FROM event"
-            query(con,sql).then(res => {
+            query(con,sql)
+            .then(res => {
                 let metadata = {
                     success: true,
                     data : {
@@ -28,7 +30,8 @@ var controller = {
                     }
                 }
                 return metadata;
-            }).then( data => res.send(data))
+            })
+            .then( data => res.send(data))
         }
         catch (error) {
 

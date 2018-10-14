@@ -8,6 +8,7 @@ const routes = require('./src/route/main.routes')
 
 
 app.use(bodyParser.json());
+app.use(express.static(__dirname));
 app.use(routes);
 
 app.listen(7777, () => {
