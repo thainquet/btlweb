@@ -27,8 +27,8 @@ var controller = {
                         content: res[0].content
                     }
                 }
-                console.log(metadata)
-            })
+                return metadata;
+            }).then( data => res.send(data))
         }
         catch (error) {
 
