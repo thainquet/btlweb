@@ -18,8 +18,12 @@
   		<input placeholder="Username" type="text" required="">
   		<input placeholder="Password" type="password" required="">
   		<input placeholder="Repassword" type="password" required="">
-  		<button>Register</button>
+  		<button onclick="stop()">Register</button>
 	</form>
-
+	<script>
+		let stop = () => {
+			alert("Registing new account is not available at the moment! Please contact admin for more information! :)")
+		}
+	</script>
 </body>
 </html>

@@ -19,8 +19,12 @@
   		<input placeholder="Username" type="text" required="">
   		<input placeholder="Password" type="password" required="">
   		<a href="#">Forgot password?</a>
-  		<button>Submit</button>
+  		<button onclick="goHome()">Submit</button>
 	</form>
-
+	<script>
+		let goHome = () => {
+			window.location.assign('/home');
+		}
+	</script>
 </body>
 </html>

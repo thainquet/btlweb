@@ -12,6 +12,9 @@ app.get('/login', (req, res) => {
 app.get('/register', (req, res) => {
     res.sendFile(path.join(public, '/view/register.view.html'));
 });
+app.get('/home', (req, res) => {
+    res.sendFile(path.join(public, '/view/home.html'));
+});
 app.use('/', express.static(public));
 app.listen(7777, () => {
     console.log('Server running on http://localhost:7777')
