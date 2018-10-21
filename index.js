@@ -3,6 +3,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const mysql = require('mysql');
 let public = path.join(__dirname, 'public');
+
+app.set('PORT', process.env.PORT || 7777);
 const app = express();
 //app.use(express.static(__dirname));	
 app.use(bodyParser.json());
@@ -16,6 +18,4 @@ app.get('/home', (req, res) => {
     res.sendFile(path.join(public, '/view/home.html'));
 });
 app.use('/', express.static(public));
-app.listen(7777, () => {
-    console.log('Server running on http://localhost:7777')
-})
+app.listen(app.get(PORT))
