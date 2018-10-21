@@ -10,7 +10,6 @@ const app = express();
 
 app.set('PORT', process.env.PORT || 7777);
 
-
 app.use(bodyParser.json());
 app.get('/', (req, res) => {
     res.sendFile(path.join(public, '/view/login.view.html'));
@@ -22,4 +21,4 @@ app.get('/home', (req, res) => {
     res.sendFile(path.join(public, '/view/home.html'));
 });
 app.use('/', express.static(public));
-app.listen(app.get(PORT))
+app.listen(app.get('PORT'))
