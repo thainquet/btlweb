@@ -11,6 +11,8 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname));
 app.use(routes);
 
-app.listen(7777, () => {
-    console.log('Server running on http://localhost:7777')
-})
+
+app.listen(7777,  () => {
+  console.log('Server running at http://localhost:7777');
+}
+);
