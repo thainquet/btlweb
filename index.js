@@ -6,7 +6,7 @@ let public = path.join(__dirname, 'public');
 const app = express();
 //app.use(express.static(__dirname));	
 app.use(bodyParser.json());
-app.get('/login', (req, res) => {
+app.get('/', (req, res) => {
     res.sendFile(path.join(public, '/view/login.view.html'));
 });
 app.get('/register', (req, res) => {
