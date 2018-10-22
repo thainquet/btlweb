@@ -4,7 +4,7 @@ let auth = require("../controller/auth.controller")
 
 let router = express.Router();
 
-router.get('/login', auth.login)
+router.post('/login', auth.login)
 
 router.get('/', controller.getIndex);
 
