@@ -13,3 +13,14 @@ function topFunction() {
   document.body.scrollTop = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
+
+let showEvent = () => {
+  fetch('/events').then(res => res.json())
+  .then(
+    res => console.log(res)
+  )
+}
+
+let logOut = ()=> {
+  window.location.assign('/')
+}
