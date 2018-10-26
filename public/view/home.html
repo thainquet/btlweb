@@ -93,93 +93,58 @@
       </div>
     </div>
   </div>
-  <div class="row contentHome beforeFooter contentPage">
-    <div class="col-md-12 centerForTimeline">
-      <div class="contentCenterTimeline">
-        <div class="row titleHomePage">
-          <!-- <div class="card backgroundHere"> -->
-          <h1>
-            <span class="titleForHomeBar info-1">
-              DANH SÁCH PHIÊN HỎI ĐÁP HOẠT ĐỘNG
-            </span>
-          </h1>
-          <!-- </div> -->
+
+
+  <div class="container-fluid content-page__header">
+    <div class="row">
+      <div class="col-md-3">
+        <div class="content-page__tag">
+          PHIÊN HỎI ĐÁP HOẠT ĐỘNG
         </div>
-
-        <div class="row listTimelinePart">
-
-          <div class="row searchListTimeline">
-            <div class="col-sm-4">
-              <div class="btn-group btn-group-sm dropdown floating-action-button ">
-
-                <a class="btn btn-sm btn-info dropdown-toggle btn-call-menu" data-toggle="dropdown" aria-haspopup="true"
-                  aria-expanded="false">
-                  <i class="fa fa-bars"></i>
-                </a>
-
-                <ul class="dropdown-menu dropdown-menu-left dropdown-content">
-
-                  <li class="dropdown-item activeAdvance dropdown-cusor" data-id="2" onclick="showEvent()">
-                    Phiên hỏi đáp hoạt động
-                  </li>
-
-                  <li class="dropdown-item dropdown-cusor" data-id="3">
-                    Phiên hỏi đáp đã đóng
-                  </li>
-
-                  <li class="dropdown-item dropdown-cusor" data-id="1">
-                    Tất cả câu hỏi
-                  </li>
-
-                </ul>
-              </div>
-            </div>
-
-            <div class="col-sm-4">
-            </div>
-
-            <div class="col-sm-4 col-right-align" style="padding-right: 0">
-              <div class="input-group float-right custom-search-form">
-                <input type="text" class="form-control" placeholder="Search">
-                <div class="input-group-append">
-                  <button class="btn btn-outline-secondary bg-dark" type="button"><i class="fa fa-search"></i></button>
-                </div>
-              </div>
-            </div>
-
-          </div>
-
-          <!-- <div class="assistantInfo" style="margin-top: 20px;margin-bottom: 8px; margin-left: 20px; font-size: 12px">
-            <em class="inforAAAA"></em>
-          </div> -->
-        </div>
-        <div>
-          
-        </div>
-        <nav id="paginationHome">
-          <ul class="pagination">
-            <!-- <li class="next pull-right" id="buttonOlder">
-                <a>
-                  <span class="titlePagination">Tải thêm</span>
-                  <span aria-hidden="true">&rarr;</span>
-                </a>
-              </li> -->
-            <li class="page-item justify-content-right  border border-secondary">
-              <a class="page-link" href="#">Next<span aria-hidden="true">&rarr;</span></a>
-            </li>
-          </ul>
-        </nav>
-        
       </div>
-    
+      <div class="col-md-3">
+        <div class="content-page__tag">
+          PHIÊN HỎI ĐÁP ĐÃ ĐÓNG
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="content-page__tag">
+          TẤT CẢ CÂU HỎI
+        </div>
+      </div>
     </div>
   </div>
-<img src="https://www.graphicdome.com/wp-content/themes/squarecode-wp/img/back-to-top.png" onclick="topFunction()"  id="imageBackToTop"
-  class="float-right">
-  <section id="footer">
+  <div class="container-fluid content-page__main mt-0">
+    <div class="row">
+      <div class="col-12 ">
+        <div class="row">
+          <div class="col-9 content-page__search">
+            <div class="input-group custom-search-form">
+              <input type="text" class="form-control" placeholder="Search">
+              <div class="input-group-append">
+                <button class="btn btn-outline-secondary bg-dark" type="button"><i class="fa fa-search"></i></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="content-page__pagination">
+    <nav id="paginationHome">
+      <ul class="pagination">
+        <li class="page-item justify-content-right  border border-secondary">
+          <a class="page-link" href="#">Next<span aria-hidden="true">&rarr;</span></a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <img src="https://www.graphicdome.com/wp-content/themes/squarecode-wp/img/back-to-top.png" onclick="topFunction()" id="imageBackToTop"
+    class="float-right">
+  <div id="footer">
     <div class="container-fluid">
       <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5 d-flexj ustify-content-center">
+        <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-5 d-flex justify-content-center">
           <ul class="list-unstyled list-inline social text-center">
             <li class="list-inline-item"><a href="#"><i class="fa fa-facebook"></i></a></li>
             <li class="list-inline-item"><a href="#"><i class="fa fa-twitter"></i></a></li>
@@ -188,17 +153,15 @@
             <li class="list-inline-item"><a href="#" target="_blank"><i class="fa fa-envelope"></i></a></li>
           </ul>
         </div>
-        </hr>
       </div>
       <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12 mt-2 mt-sm-2 text-center text-white">
           <p> Sản phẩm của nhóm 5 lớp phát triển ứng dụng web thầy Nguyễn Việt Anh</p>
           <p class="h6">&copy All right Reversed.<a class="text-green ml-2" href="https://www.uet.edu.vn" target="_blank">UET</a></p>
         </div>
-        </hr>
       </div>
     </div>
-  </section>
+  </div>
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"

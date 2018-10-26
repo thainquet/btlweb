@@ -1,22 +1,24 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Courier New', Courier, monospace;
+}
+
 .bg-violet {
   background-color: #8e44ad;
 }
+
 /* Footer */
 @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
 
-section {
-  padding: 60px 0;
-}
-
-section .section-title {
-  text-align: center;
-  color: #007b5e;
-  margin-bottom: 50px;
-  text-transform: uppercase;
-}
 
 #footer {
+  margin-top: 30px;
   background: #8e44ad !important;
+  opacity: 0.5;
 }
 
 #footer h5 {
@@ -101,20 +103,15 @@ section .section-title {
   text-align: center !important;
 }
 
-
 .notHaveElement {
   margin-top: 20px;
   margin-bottom: 20px;
 }
 
 .custom-search-form {
-  max-width: 250px;
+  margin-top: 20px;
 }
-@media screen and (max-width: 650px) {
-  .custom-search-form {
-    display: none;
-  }
-}
+
 .linkNormal {
   color: #365899 !important;
   font-family: sans-serif;
@@ -690,6 +687,7 @@ fieldset[disabled] .btn-success.active {
 .titleForHomeBar {
   color: white;
 }
+
 @media(min-width: 768px) {
   .info-0 {
     font-size: 20px;
@@ -1325,10 +1323,7 @@ footer {
 
 /* home page */
 
-#paginationHome {
-  margin-top: 30px;
-  margin-bottom: 30px;
-}
+#paginationHome {}
 
 .contentHome {
   margin-top: 30px;
@@ -1395,6 +1390,49 @@ footer {
   height: 100%;
 }
 
+.content-page__header {
+  width: 95%;
+  margin-top: 15px;
+  /* border: 1px solid black; */
+}
+
+.content-page__main {
+  margin-top: 0px;
+  border: 1px solid seagreen;
+  min-height: 100%;
+  width: 95%;
+  margin-top: 20px;
+}
+
+.content-page__tag {
+  height: 100%;
+  color: white;
+  padding: 6px;
+  background-color: #34495e;
+  text-align: center;
+  font-weight: bold;
+  border-top-left-radius: 6px;
+  border-top-right-radius: 6px;
+  cursor: pointer;
+}
+
+.content-page__tag:hover {
+  background-color: red;
+}
+
+@media screen and (max-width: 768px) {
+  .content-page__tag {
+    border-radius: 0;
+  }
+}
+
+.content-page__pagination {
+  display: flex;
+  width: 95%;
+  margin: auto;
+  padding-top: 15px;
+}
+
 .contentHome .centerForTimeline .contentCenterTimeline {
   width: 95%;
   margin: 0 auto;
@@ -1412,6 +1450,7 @@ footer {
   justify-content: center;
   align-items: center;
 }
+
 .contentHome .centerForTimeline .listTimelinePart {
   background-color: #e9ebee;
   width: auto;
@@ -2266,10 +2305,8 @@ footer {
   margin: 0 auto !important;
   border: 1px solid #eee;
   min-width: 800px;
-
   padding-bottom: 10px;
   padding-top: 10px;
-
 }
 
 #contentUsersPage,
@@ -2535,6 +2572,7 @@ select option {
 .contentResultSurvey tr {
   height: 30px !important;
 }
+
 .dropdown-cusor:hover {
   cursor: pointer;
 }
