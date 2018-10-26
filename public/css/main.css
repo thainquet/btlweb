@@ -2,6 +2,9 @@ html, body {
   height: 100%;
 }
 
+body {
+  font-family: 'Courier New', Courier, monospace;
+}
 .bg-violet {
   background-color: #8e44ad;
 }
@@ -1387,7 +1390,6 @@ footer {
   width: 95%;
   margin-top: 15px;
   /* border: 1px solid black; */
-  
 }
 .content-page__main {
   margin-top: 0px;
@@ -1400,14 +1402,20 @@ footer {
   height: 100%;
   color: white;
   padding: 6px; 
-  background-color: orange;
+  background-color: #34495e;
   text-align: center;
+  font-weight: bold;
   border-top-left-radius: 6px;
   border-top-right-radius: 6px;
   cursor: pointer;
 }
 .content-page__tag:hover{
   background-color: red;
+}
+@media screen and (max-width: 768px) {
+  .content-page__tag {
+    border-radius:  0;
+  }
 }
 .content-page__pagination {
   display: flex;
