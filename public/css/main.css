@@ -688,6 +688,7 @@ fieldset[disabled] .btn-success.active {
   color: white;
 }
 
+
 @media(min-width: 768px) {
   .info-0 {
     font-size: 20px;
