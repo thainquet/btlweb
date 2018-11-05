@@ -29,7 +29,7 @@ var auth = {
                 } 
             }
         })
-        //console.log(usn + " " + pass)
+        console.log(usn + " " + pass)
     }
 
 }

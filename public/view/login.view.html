@@ -1,47 +1,46 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<title>QA System</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<base href="/">
-<script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false);
-function hideURLbar(){ window.scrollTo(0,1); } </script>
-<link rel="stylesheet" href="public/css/style.css" type="text/css" media="all" />
-</head>
-<body>
-		<div class="header-w3l">
-			<h1>Welcome to QA System</h1>
-		</div>
-		<div class="main-w3layouts-agileinfo">
-      <div class="wthree-form">
-        <h2>Log in</h2>
-        <form action="#" method="post">
-          <div class="form-sub-w3">
-            <input type="text" name="Username" placeholder="Username " required="" />
-          <div class="icon-w3">
-            <i class="fa fa-user"></i>
-            <img src="public/img/user.png">
-          </div>
-          </div>
-          <div class="form-sub-w3">
-            <input type="password" name="Password" placeholder="Password" required="" />
-          <div class="icon-w3">
-            <i class="fa fa-unlock-alt" aria-hidden="true"></i>
-            <img src="public/img/unlock-2.png">
-          </div>
-          </div>
-          <label class="anim">
-          <input type="checkbox" class="checkbox">
-            <span>Remember Me</span> 
-            <a href="#">Forgot Password</a>
-          </label> 
-          <div class="clear"></div>
-          <div class="submit-agileits">
-            <input type="submit" value="Login">
-          </div>
-        </form>
-      </div>
-		</div>
-</body>
-</html>
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<!-- <div class="header">
+		<a href="#" id="logo"><img src="/img/uet.png"> QA System</a>
+		<a href="/view/register.html" id="register">Register</a>
+		<a href="#/" id="login">Log in</a>
+	</div>
+	<center>
+		Wellcome to QA System
+	</center>
+	<form method="dialog">
+		<h1>Login</h1>
+		<input placeholder="Username" type="text" required="" id="username">
+		<input placeholder="Password" type="password" required="" id="password">
+		<button onclick="login()">Submit</button>
+	</form> -->
+		<login-header></login-header>
+				
+		<div class="container-fluid">
+			<form>
+				<h1>Login</h1>
+				<input placeholder="Username" type="text" required="" id="username">
+				<input placeholder="Password" type="password" required="" id="password">
+				<button class="submit" onclick="login()">Submit</button>
+			</form>
+		</div> 
+	<script>
+		let login = () => {
+			let usn = document.getElementById('username').value;
+			let pass = document.getElementById('password').value;
+			fetch('/login', {
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded'
+					},
+					method: "POST",
+					body: `username=${usn}&password=${pass}`
+				}).then(res => res.json())
+				.then(res => {
+					if (res.success == false) {
+						alert(res.message);
+						window.location.assign('/')
+					} else {
+						window.location.assign('/home')
+					}
+				})
+		}
+	</script>
