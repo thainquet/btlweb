@@ -1,0 +1,46 @@
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<!-- <div class="header">
+		<a href="#" id="logo"><img src="/img/uet.png"> QA System</a>
+		<a href="/view/register.html" id="register">Register</a>
+		<a href="#/" id="login">Log in</a>
+	</div>
+	<center>
+		Wellcome to QA System
+	</center>
+	<form method="dialog">
+		<h1>Login</h1>
+		<input placeholder="Username" type="text" required="" id="username">
+		<input placeholder="Password" type="password" required="" id="password">
+		<button onclick="login()">Submit</button>
+	</form> -->
+		<login-header></login-header>
+				
+		<div class="container-fluid">
+			<form>
+				<h1>Login</h1>
+				<input placeholder="Username" type="text" required="" id="username">
+				<input placeholder="Password" type="password" required="" id="password">
+				<button class="submit" onclick="login()">Submit</button>
+			</form>
+		</div> 
+	<script>
+		let login = () => {
+			let usn = document.getElementById('username').value;
+			let pass = document.getElementById('password').value;
+			fetch('/login', {
+					headers: {
+						'Content-Type': 'application/x-www-form-urlencoded'
+					},
+					method: "POST",
+					body: `username=${usn}&password=${pass}`
+				}).then(res => res.json())
+				.then(res => {
+					if (res.success == false) {
+						alert(res.message);
+						window.location.assign('/')
+					} else {
+						window.location.assign('/home')
+					}
+				})
+		}
+	</script>
