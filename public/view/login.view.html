@@ -18,12 +18,12 @@
 		<div class="container-fluid">
 			<form>
 				<h1>Login</h1>
-				<input placeholder="Username" type="text" required="" id="username">
-				<input placeholder="Password" type="password" required="" id="password">
-				<button class="submit" onclick="login()">Submit</button>
+				<input placeholder="Username" type="text" required="" id="username" ng-model="user.username">
+				<input placeholder="Password" type="password" required="" id="password" ng-model="user.password">
+				<button class="submit" ng-click='onSubmit()'>Submit</button>
 			</form>
 		</div> 
-	<script>
+	<!-- <script>
 		let login = () => {
 			let usn = document.getElementById('username').value;
 			let pass = document.getElementById('password').value;
@@ -43,4 +43,4 @@
 					}
 				})
 		}
-	</script>
+	</script> -->

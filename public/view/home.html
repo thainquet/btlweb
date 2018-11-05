@@ -64,6 +64,9 @@
             </div>
 
             <div class="col-sm-4">
+              <div ng-if='sessionList[0].active' ng-controller='activingSessionCtrl'>Hello</div>
+              <div ng-if='sessionList[1].active' ng-controller='activedSessionCtrl'>How are u?</div>
+              <div ng-if='sessionList[2].active'>It's a nice day!</div>
             </div>
 
             <div class="col-sm-4 col-right-align" style="padding-right: 0">
