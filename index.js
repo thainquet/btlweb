@@ -29,6 +29,6 @@ app.use(bodyParser.json());
 
 // app.use('/', express.static(public));
 // app.use(router);
-
+app.use('/', router);
 
 app.listen(app.get('PORT'))
