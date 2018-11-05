@@ -14,3 +14,5 @@ angular.module('QASystem')
         $scope.pageHeader.title = $scope.sessionList[index].title.toUpperCase();
     };
 }])
+
+

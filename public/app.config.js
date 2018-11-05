@@ -7,7 +7,8 @@ angular.module('QASystem', ['ngRoute'])
   });
 
   $routeProvider.when('/home', {
-    templateUrl: 'view/home.html',
-    controller: 'homeCtrl'
+    templateUrl: 'view/home.view.html',
+    controller: 'homeCtrl'  
   });
 }])
+
