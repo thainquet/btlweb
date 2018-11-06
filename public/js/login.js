@@ -4,14 +4,18 @@ angular.module('QASystem')
         username: "",
         password: ""
     };
+    //console.log('abc');
 
     $scope.onSubmit = function () {
+        //console.log('abc');
         doLogin();
     }
 
     function doLogin () {
+      console.log('ahhh');
         $http.post('/login', $scope.user)
             .then(function successCallback(data) {
+              console.log('abc');
                 if(data.data.success) {
                     $location.path('/home');
                     $window.localStorage['user'] = JSON.stringify($scope.user);
@@ -22,5 +26,4 @@ angular.module('QASystem')
                 console.log(err);
             });
     }
-
 })

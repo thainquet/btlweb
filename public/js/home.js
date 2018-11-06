@@ -24,6 +24,7 @@ angular.module('QASystem')
 angular.module('QASystem')
 .controller('navCtrl', ['$scope', '$window', function($scope, $window) {
     $scope.name = "";
+    console.log('abc');
 
     $scope.isLoggedIn = function () {
         if ($window.localStorage['user']) {
