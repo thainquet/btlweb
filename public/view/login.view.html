@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html>
-
-<head>
-	<title>QA System</title>
-	<link rel="stylesheet" type="text/css" href="/css/style.css">
-</head>
-
-<body>
-	<div class="header">
-		<!-- <img src="../img/uet.png"> -->
+	<link rel="stylesheet" type="text/css" href="../css/style.css">
+	<!-- <div class="header">
 		<a href="#" id="logo"><img src="/img/uet.png"> QA System</a>
 		<a href="/view/register.html" id="register">Register</a>
-		<a href="/view/login.view.html" id="login">Log in</a>
+		<a href="#/" id="login">Log in</a>
 	</div>
 	<center>
 		Wellcome to QA System
@@ -21,8 +12,18 @@
 		<input placeholder="Username" type="text" required="" id="username">
 		<input placeholder="Password" type="password" required="" id="password">
 		<button onclick="login()">Submit</button>
-	</form>
-	<script>
+	</form> -->
+		<login-header></login-header>
+				
+		<div class="container-fluid">
+			<form>
+				<h1>Login</h1>
+				<input placeholder="Username" type="text" required="" id="username" ng-model="user.username">
+				<input placeholder="Password" type="password" required="" id="password" ng-model="user.password">
+				<button class="submit" ng-click='onSubmit()'>Submit</button>
+			</form>
+		</div> 
+	<!-- <script>
 		let login = () => {
 			let usn = document.getElementById('username').value;
 			let pass = document.getElementById('password').value;
@@ -42,7 +43,4 @@
 					}
 				})
 		}
-	</script>
-</body>
-
-</html>
+	</script> -->

@@ -1,7 +1,7 @@
 {
   "name": "btlweb",
   "version": "1.0.0",
-  "description": "",
+  "description": "- Cài đặt git, nodejs và npm - Tạo folder mới, clone repo này về, cd đến folder vừa tạo, chạy \"npm init\". - Chạy lệnh \"npm install\" để cài đặt app. - Chạy lệnh \"node index.js\" để khởi động app. - Mặc định app chạy trên cổng 7777, vào trình duyệt và vào \"localhost:7777\"",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -18,5 +18,13 @@
   },
   "devDependencies": {
     "nodemon": "^1.18.4"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thainquet/btlweb.git"
+  },
+  "bugs": {
+    "url": "https://github.com/thainquet/btlweb/issues"
+  },
+  "homepage": "https://github.com/thainquet/btlweb#readme"
 }
