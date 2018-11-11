@@ -34,6 +34,18 @@ var auth = {
 
 }
 
+// register = function(req, res) {
+//     user.findOne({
+//         where: {
+//             username: req.body.username
+//         }
+//     }).then((user) => {
+//         if(user == null) {
+//             user.
+//         }
+//     })
+// }
+
 function query(con, sql, i) {
     return new Promise((resolve, reject) => {
         con.query(sql, i, function (err, result) {
