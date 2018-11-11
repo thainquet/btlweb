@@ -57,8 +57,8 @@ var controller = {
                         idEvent: i.idEvent,
                         idComment: i.idComment,
                         contentQuest: i.contentQuest
-                    }
-                    count ++
+                    };
+                    count ++;
                 })
                 let metadata = {
                     success: true,
@@ -74,6 +74,30 @@ var controller = {
                 message: error
             })
         }
+    },
+    createNewQuestionOfEvent : (req,res) => {
+        let idEvent = req.params.idEvent;
+        let content = "" + req.body.content;
+        let sql = `INSERT INTO event_question (idEvent, contentQuest) VALUES (` + idEvent + `,"` + content + `")`
+        query(con,sql)
+        .then(() => {
+            res.send({
+                success: true,
+                message: "add new question successfully!"
+            })
+        })
+    },
+    deleteQuestionById : (req,res) => {
+        let idQuest = req.params.idQuest;
+        let sql = "DELETE FROM `event_question` WHERE `event_question`.`idQuestion` = " + idQuest;
+        query(con,sql)
+        .then(() => {
+            res.send({
+                success: true,
+                message: "delete successfully!"
+            })
+        })
+        //console.log(sql)
     }
     
 }
