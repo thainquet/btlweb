@@ -6,9 +6,13 @@ let router = express.Router();
 
 router.post('/login', auth.login)
 
-router.get('/', controller.getIndex);
-
 router.get('/events', controller.getAllEvent)
+
+router.get('/events/:idEvent', controller.getEventbyID)
+
+router.get('/events/:idEvent/comments', controller.getQuestionsOfEvent)
+
+//router.get('/', controller.getIndex);
 
 // router.post('/events/newQuestion', controller.postNew)
 
