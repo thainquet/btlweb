@@ -21,7 +21,6 @@ angular.module('QASystem')
     };
 }]);
 
-
 angular.module('QASystem')
 .controller('navCtrl', ['$scope', '$window', function($scope, $window) {
     $scope.name = "";

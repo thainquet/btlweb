@@ -1,10 +1,12 @@
 let express = require('express');
-let controller = require('../controller/main.controller')
-let auth = require("../controller/auth.controller")
+let controller = require('../controller/main.controller');
+let auth = require("../controller/auth.controller");
 
 let router = express.Router();
 
 router.post('/login', auth.login)
+
+router.post('/register', auth.register);
 
 router.get('/', controller.getIndex);
 
