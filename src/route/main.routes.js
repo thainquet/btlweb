@@ -10,7 +10,11 @@ router.get('/events', controller.getAllEvent)
 
 router.get('/events/:idEvent', controller.getEventbyID)
 
-router.get('/events/:idEvent/comments', controller.getQuestionsOfEvent)
+router.get('/events/:idEvent/questions', controller.getQuestionsOfEvent)
+
+router.post('/events/:idEvent/questions/newQuestion', controller.createNewQuestionOfEvent)
+
+router.delete('/events/:idEvent/questions/delete/:idQuest', controller.deleteQuestionById)
 
 //router.get('/', controller.getIndex);
 
