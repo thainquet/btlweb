@@ -31,34 +31,6 @@ var auth = {
             }
         })
         console.log(usn + " " + pass)
-    },
-
-    register: (req, res) => {
-        console.log('abc');
-        let usn = req.body.username;
-        let pass = req.body.password;
-        let values = [usn, pass];
-        let sql = "SELECT * FROM `user` WHERE username = (?)";
-        let add = "INSERT INTO `user` VALUES(?,?)"
-        query(con, sql, usn).then(data => {
-            if(data.length == 0) {
-                add = con.format(add, values);
-                con.query(add, function(err, results) {
-                    if(err) console.log(err);
-                    else {
-                        console.log("Insert successfully");
-                        res.send({
-                            success: true
-                        })
-                    }
-                })
-            } else {
-                res.send({
-                    success: false,
-                    message: "Insert failed"
-                })
-            }
-        })
     }
 
 }

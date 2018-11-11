@@ -12,10 +12,5 @@ angular.module('QASystem', ['ngRoute'])
     controller: 'homeCtrl'  
   });
 
-  $routeProvider.when('/register', {
-    templateUrl: 'view/auth/register.view.html',
-    controller: 'registerCtrl'
-  });
-  
 }])
 
