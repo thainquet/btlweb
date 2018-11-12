@@ -11,6 +11,9 @@
 - localhost:7777/register : tạo tài khoản mới, request body gồm username, password, email, type(admin/teacher/student)
 - localhost:7777/accounts/detail/:id : thông tin tài khoản có id = id
 - localhost:7777/accounts/detail/:id/change : thay đổi thông tin tài khoản có id = id, request body gồm hoặc password mới hoặc email mới hoặc cả 2.
+- localhost:7777/accounts/:id/myquestions : trả về tất cả câu hỏi của người dùng, nếu ko có trả về message là "You have no questions!"
+- localhost:7777/events/:idEvent/open : mở phiên có id = id
+- localhost:7777/events/:idEvent/close : đóng phiên có id = id
 # Cài đặt
 - Cài đặt git, nodejs và npm
 - Tạo folder mới, clone repo này về, cd đến folder vừa tạo, chạy "npm init".
