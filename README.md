@@ -4,7 +4,7 @@
 # 12/11: Danh sách APIs:
 - localhost:7777/events : trả về tất cả các phiên hiện có và thông tin của chúng.
 - localhost:7777/events/:idEvent: trả về phiên có id = idEvent và thông tin của nó.
-- localhost:7777/events/:idEvent/comments: trả về tất cả câu hỏi của phiên có id = idEvent
+- localhost:7777/events/:idEvent/questions: trả về tất cả câu hỏi của phiên có id = idEvent
 - localhost:7777/events/:idEvent/questions/newQuestion: tạo mới câu hỏi trong phiên có id = idEvent
 - localhost:7777/events/:idEvent/questions/delete/:idQuest: xoá câu hỏi trong phiên có id = idEvent và id câu hỏi = idQuest
 # 13/11: 

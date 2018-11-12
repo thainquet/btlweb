@@ -85,27 +85,13 @@ var controller = {
     },
     getQuestionsOfEvent: (req, res) => {
         try {
-            let sql = "SELECT * FROM `event` e JOIN event_question q ON e.idEvent = q.idEvent WHERE e.idEvent = " + req.params.idEvent;
+            let sql = "SELECT idQuestion, username , contentQuest as content_question FROM event_question q JOIN event e ON q.idEvent = e.idEvent JOIN user u ON q.id_user = u.id WHERE q.idEvent =" + req.params.idEvent;
             //let i = req.params.idEvent;
             query(con, sql)
-                .then(res => {
-                    let data = [];
-                    let count = 0;
-                    res.forEach(i => {
-                        data[count] = {
-                            idEvent: i.idEvent,
-                            idComment: i.idComment,
-                            contentQuest: i.contentQuest
-                        };
-                        count++;
-                    })
-                    let metadata = {
-                        success: true,
-                        data: data
-                    }
-                    return metadata
-                })
-                .then(data => res.send(data))
+                .then(data => res.send({
+                    success: true,
+                    data: data
+                }))
             //console.log(sql + i)
         } catch (error) {
             res.send({
@@ -116,8 +102,9 @@ var controller = {
     },
     createNewQuestionOfEvent: (req, res) => {
         let idEvent = req.params.idEvent;
-        let content = "" + req.body.content;
-        let sql = `INSERT INTO event_question (idEvent, contentQuest) VALUES (` + idEvent + `,"` + content + `")`
+        let content = req.body.content;
+        let id_user = req.body.id_user;
+        let sql = `INSERT INTO event_question (idEvent, contentQuest, id_user) VALUES (` + idEvent + `,"` + content + `",`+ id_user+ `)`
         query(con, sql)
             .then(() => {
                 res.send({
