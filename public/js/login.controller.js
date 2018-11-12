@@ -4,8 +4,10 @@ angular.module('QASystem')
         username: "",
         password: ""
     };
+    //console.log('abc');
 
     $scope.onSubmit = function () {
+        //console.log('abc');
         doLogin();
     }
 
@@ -21,6 +23,5 @@ angular.module('QASystem')
             }, function errorCallback(err) {
                 console.log(err);
             });
-    }
-
+    } 
 })
