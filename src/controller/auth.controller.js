@@ -26,7 +26,7 @@ var auth = {
                         success: false,
                         message: "wrong username or password"
                     })
-                }
+                } 
             }
         })
         console.log(usn + " " + pass)

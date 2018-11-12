@@ -13,3 +13,15 @@
 - Chạy lệnh "npm install" để cài đặt app.
 - Chạy lệnh "node index.js" để khởi động app.
 - Mặc định app chạy trên cổng 7777, vào trình duyệt và vào "localhost:7777"
+
+#Danh sách api cần thêm: 
+- Thêm phiên hỏi đáp
+- API trả về danh sách câu hỏi của mỗi user.
+- API mở phiên hỏi đáp
+- API đóng phiên hỏi đáp
+- API xóa phiên hỏi đáp
+- API vote question
+- API them cau tra loi cho cau hoi
+- API them	hản hồi về câu trả lời cho câu hỏi (Comment for answer)
+- API tạo người dùng mới.
+- API sửa đổi thông tin người dùng.
