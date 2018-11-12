@@ -35,17 +35,17 @@
 <div class="container-fluid content-page__header">
   <div class="row">
     <div class="col-md-3">
-      <div class="content-page__tag">
+      <div ng-click="chooseTag(0)" class="content-page__tag choosed-{{isActive(0)}}">
         PHIÊN HỎI ĐÁP HOẠT ĐỘNG
       </div>
     </div>
     <div class="col-md-3">
-      <div class="content-page__tag">
+     <div ng-click="chooseTag(1)" class="content-page__tag choosed-{{isActive(1)}}">
         PHIÊN HỎI ĐÁP ĐÃ ĐÓNG
       </div>
     </div>
     <div class="col-md-3">
-      <div class="content-page__tag">
+      <div ng-click="chooseTag(2)" class="content-page__tag choosed-{{isActive(2)}}">
         TẤT CẢ CÂU HỎI
       </div>
     </div>
@@ -53,7 +53,7 @@
 </div>
 <div class="container-fluid content-page__main mt-0">
   <div class="row">
-    <div class="col-12 ">
+    <div class="col-12">
       <div class="row">
         <div class="col-9 content-page__search">
           <div class="input-group custom-search-form">
@@ -66,9 +66,9 @@
       </div>
     </div>
   </div>
-  
+  <activated-session></activated-session>
 </div>
-<div class="content-page__pagination">
+<!-- <div class="content-page__pagination">
   <nav id="paginationHome">
     <ul class="pagination">
       <li class="page-item justify-content-right  border border-secondary">
@@ -76,7 +76,7 @@
       </li>
     </ul>
   </nav>
-</div>
+</div> -->
 <img src="https://www.graphicdome.com/wp-content/themes/squarecode-wp/img/back-to-top.png" onclick="topFunction()" id="imageBackToTop"
   class="float-right">
 <page-footer></page-footer>
