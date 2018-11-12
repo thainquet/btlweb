@@ -66,12 +66,14 @@
       </div>
     </div>
   </div>
-  <div ng-if="isActive(0)">
-    <activated-session>
-    </activated-session>
-  </div>
-  <div ng-if="isActive(1)">
-    <div activating-session>
+  <div class="list-item">
+    <div ng-if="isActive(0)">
+      <activated-session>
+      </activated-session>
+    </div>
+    <div ng-if="isActive(1)">
+      <activating-session>
+      </activating-session>
     </div>
   </div>
 </div>
