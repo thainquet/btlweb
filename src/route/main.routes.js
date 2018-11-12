@@ -6,6 +6,12 @@ let router = express.Router();
 
 router.post('/login', auth.login)
 
+router.post('/register', auth.newAccount)
+
+router.get('/accounts/detail/:id', auth.checkInfoAccout)
+
+router.put('/accounts/detail/:id/change',auth.changeInfoAccount)
+
 router.get('/events', controller.getAllEvent)
 
 router.get('/events/:idEvent', controller.getEventbyID)
@@ -15,14 +21,6 @@ router.get('/events/:idEvent/questions', controller.getQuestionsOfEvent)
 router.post('/events/:idEvent/questions/newQuestion', controller.createNewQuestionOfEvent)
 
 router.delete('/events/:idEvent/questions/delete/:idQuest', controller.deleteQuestionById)
-
-//router.get('/', controller.getIndex);
-
-// router.post('/events/newQuestion', controller.postNew)
-
-// router.put('/events/update/:id', controller.updateOne)
-
-// router.delete('/ads/delete/:id', controller.deleteById)
 
 
 module.exports = router;
