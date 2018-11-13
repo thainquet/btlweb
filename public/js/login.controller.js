@@ -23,10 +23,6 @@ angular.module('QASystem')
             }, function errorCallback(err) {
                 console.log(err);
             });
-<<<<<<< HEAD:public/js/login.js
     }
     
-=======
-    } 
->>>>>>> origin/huyle:public/js/login.controller.js
 })
