@@ -29,7 +29,7 @@ var auth = {
                         message: "wrong username or password"
                     })
                 } 
-                console.log(sql);
+                //console.log(sql);
             }
         })
         console.log(usn + " " + pass)
