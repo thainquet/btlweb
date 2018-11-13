@@ -18,6 +18,7 @@ var auth = {
                     res.send({
                         success: true,
                         data: {
+                            // Them id cua Quynh vao cho nay
                             id: data[0].id,
                             username: data[0].username
                         }

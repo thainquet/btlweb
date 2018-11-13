@@ -17,7 +17,7 @@ angular.module('QASystem')
                 if(data.data.success) {
                     console.log(data);
                     $location.path('/home');
-                    $window.localStorage['user'] = JSON.stringify(data.data.data);
+                    $window.sessionStorage['user'] = JSON.stringify(data.data.data);
                 } else {
                     alert('username or password is incorrect');
                 }

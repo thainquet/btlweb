@@ -82,7 +82,7 @@ angular.module('QASystem')
     }
 
     // Tao 1 cau hoi moi cho event
-    let user = JSON.parse($window.localStorage['user']);
+    let user = JSON.parse($window.sessionStorage['user']);
     $scope.createNewQuestion = function(idEvent) {
         console.log(idEvent);
         let a = {
