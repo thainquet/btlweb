@@ -66,15 +66,19 @@
       </div>
     </div>
   </div>
-  <div ng-if="isActive(0)">
-    <activated-session>
-    </activated-session>
-  </div>
-  <div ng-if="isActive(1)">
-    <div activating-session>
+  <div class="list-item">
+    <div ng-if="isActive(0)">
+      <activating-session>
+      </activating-session>
+    </div>
+    <div ng-if="isActive(1)">
+      <activated-session>
+      </activated-session>
     </div>
   </div>
-  <div ng-if="isActive(2)" ng-controller="allQuestionCtrl"></div>
+  <div ng-if="isActive(2)" ng-controller="eventCtrl">
+    <div ng-repeat="event in listEvents">{{event.event_name}}</div>
+  </div>
 </div>
 <!-- <div class="content-page__pagination">
   <nav id="paginationHome">

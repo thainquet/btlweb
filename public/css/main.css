@@ -2597,3 +2597,7 @@ select option {
    background-color: skyblue;
    color: white;
 }
+
+.list-item {
+  min-height: 70%;
+}

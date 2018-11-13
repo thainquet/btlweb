@@ -3,5 +3,5 @@ angular.module('QASystem')
     return {
         restrict: 'EA',
         templateUrl: '../view/pageFooter.view.html'
-    }
+    } 
 })
