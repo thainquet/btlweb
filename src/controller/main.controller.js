@@ -4,7 +4,19 @@ const path = require('path')
 
 
 var controller = {
-    getAllEvent: (req, res) => {
+  getIndex: (req, res) => {
+    try {
+      res.sendFile(path.join(__dirname + '../../../public/login.view.html'));
+    } catch (error) {
+      res.send({
+        success: false,
+        reason: error.message
+      })
+    }
+  },
+  
+    getAllEvent : (req, res) => {
+
         try {
             let sql = `SELECT idEvent, name as event_name, type, content, status, id as id_creator, 
             username as creator FROM event e JOIN user u on e.id_creator = u.id`
@@ -105,6 +117,8 @@ var controller = {
         let content = req.body.content;
         let id_user = req.body.id_user;
         let sql = `INSERT INTO event_question (idEvent, contentQuest, id_user) VALUES (` + idEvent + `,"` + content + `",`+ id_user+ `)`
+       //console.log(sql);
+       
         query(con, sql)
             .then(() => {
                 res.send({

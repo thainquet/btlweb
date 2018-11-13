@@ -15,13 +15,15 @@ angular.module('QASystem')
         $http.post('/login', $scope.user)
             .then(function successCallback(data) {
                 if(data.data.success) {
+                    console.log(data);
                     $location.path('/home');
-                    $window.localStorage['user'] = JSON.stringify($scope.user);
+                    $window.sessionStorage['user'] = JSON.stringify(data.data.data);
                 } else {
                     alert('username or password is incorrect');
                 }
             }, function errorCallback(err) {
                 console.log(err);
             });
-    } 
+    }
+    
 })

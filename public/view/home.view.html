@@ -35,7 +35,7 @@
 <div class="container-fluid content-page__header">
   <div class="row">
     <div class="col-md-3">
-      <div ng-click="chooseTag(0)"" class="content-page__tag choosed-{{isActive(0)}}">
+      <div ng-click="chooseTag(0)" class="content-page__tag choosed-{{isActive(0)}}">
         PHIÊN HỎI ĐÁP HOẠT ĐỘNG
       </div>
     </div>
@@ -68,13 +68,16 @@
   </div>
   <div class="list-item">
     <div ng-if="isActive(0)">
-      <activated-session>
-      </activated-session>
-    </div>
-    <div ng-if="isActive(1)">
       <activating-session>
       </activating-session>
     </div>
+    <div ng-if="isActive(1)">
+      <activated-session>
+      </activated-session>
+    </div>
+  </div>
+  <div ng-if="isActive(2)" ng-controller="eventCtrl">
+    <div ng-repeat="event in listEvents">{{event.event_name}}</div>
   </div>
 </div>
 <!-- <div class="content-page__pagination">

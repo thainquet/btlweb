@@ -1,4 +1,4 @@
-const con = require("../module/module.connectDB")
+const con = require("../module/module.connectDB");
 
 
 var auth = {
@@ -18,6 +18,8 @@ var auth = {
                     res.send({
                         success: true,
                         data: {
+                            // Them id cua Quynh vao cho nay
+                            id: data[0].id,
                             username: data[0].username
                         }
                     })
@@ -27,6 +29,7 @@ var auth = {
                         message: "wrong username or password"
                     })
                 } 
+                console.log(sql);
             }
         })
         console.log(usn + " " + pass)

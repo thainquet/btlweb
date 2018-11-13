@@ -29,14 +29,14 @@ angular.module('QASystem')
 .controller('navCtrl', ['$scope', '$window', function($scope, $window) {
     $scope.name = "";
     $scope.isLoggedIn = function () {
-        if ($window.localStorage['user']) {
+        if ($window.sessionStorage['user']) {
             return true;
         } else {
             return false;
         }
     }
     if ($scope.isLoggedIn() == true) {
-        let user = JSON.parse($window.localStorage['user']);
+        let user = JSON.parse($window.sessionStorage['user']);
         $scope.name = user.username;
     } 
 }]);

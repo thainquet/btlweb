@@ -3,7 +3,7 @@
 angular.module('QASystem', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/', {
-    templateUrl: 'view/login.view.html',
+    templateUrl: 'view/auth/login.view.html',
     controller: 'loginCtrl'
   });
 
@@ -11,5 +11,6 @@ angular.module('QASystem', ['ngRoute'])
     templateUrl: 'view/home.view.html',
     controller: 'homeCtrl'
   });
+
 }])
 
