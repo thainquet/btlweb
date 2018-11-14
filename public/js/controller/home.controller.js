@@ -27,16 +27,16 @@ angular.module('QASystem')
 
 angular.module('QASystem')
 .controller('navCtrl', ['$scope', '$window', function($scope, $window) {
-    $scope.name = "";
-    $scope.isLoggedIn = function () {
-        if ($window.sessionStorage['user']) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    if ($scope.isLoggedIn() == true) {
-        let user = JSON.parse($window.sessionStorage['user']);
-        $scope.name = user.username;
-    } 
+    // $scope.name = "";
+    // $scope.isLoggedIn = function () {
+    //     if ($window.sessionStorage['user']) {
+    //         return true;
+    //     } else {
+    //         return false;
+    //     }
+    // }
+    // if ($scope.isLoggedIn() == true) {
+    //     let user = JSON.parse($window.sessionStorage['user']);
+    //     $scope.name = user.username;
+    // } 
 }]);
