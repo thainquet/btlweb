@@ -16,7 +16,7 @@ app.get('/', function(req, res) {
 });
 
 app.use(bodyParser.json());
-// app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 // app.get('/', (req, res) => {
 //     res.sendFile(path.join(public, '/view/login.view.html'));
 // });
@@ -27,8 +27,8 @@ app.use(bodyParser.json());
 //     res.sendFile(path.join(public, '/view/home.html'));
 // });
 
-// app.use('/', express.static(public));
-// app.use(router);
-app.use('/', router);
+//app.use('/', express.static(public));
+app.use(router);
+//app.use('/', router);
 
 app.listen(app.get('PORT'))

@@ -1,6 +1,5 @@
-<div ng-controller="activatedSessionCtrl">
-
-  <div class="row" ng-show="showEvents" ng-repeat="session in listActivedEvents">
+<div ng-controller="activatingSessionCtrl">
+  <div class="row pointer" ng-show="showEvents" ng-repeat="session in listActivingEvents">
     <div class="col-12 col-card" ng-click="getQuestions(session.idEvent)">
       <div class="media border d-flex align-items-center p-2">
         <div class="border">
@@ -9,12 +8,14 @@
         <div class="media-body ml-2 d-flex flex-column justify-content-around">
           <span class="infor-1 redtab">{{session.event_name}}</span>
           <span class="infor-2">Chủ tọa: {{session.creator}}</span>
-          <span class="time-news linkNormal">Đã đóng</span>
-          <span class="time-news linkNormal">Số câu hỏi: </span>
+          <span class="time-news linkNormal">Đang hoạt động</span>
+          <span class="time-news linkNormal">Số câu hỏi: {{session.question_count}} </span>
         </div>
       </div>
+      <button type="button" class="btn btn-sm btn-warning" ng-if="isAdmin()" ng-click="closeEvent(session.idEvent)">Đóng</button>
+      <button type="button" class="btn btn-sm btn-primary" ng-click="createNewQuestion(session.idEvent)">Đặt câu hỏi</button>
+      <button type="button" class="btn btn-sm btn-danger" ng-if="isAdmin()" ng-click="openSession(session.idEvent)">Xóa</button>
     </div>
-    <button ng-click="openSession(session.idEvent)">Reopen event</button>
   </div>
   <div ng-show="showQuestions">
     <div class="row" ng-repeat="question in listQuestions">
@@ -35,11 +36,9 @@
           </div>
         </div>
       </div>
+      <button ng-click="deleteQuestion(session.idEvent, question.idQuestion)">delete question</button>
     </div>
   </div>
   <item-pagination></item-pagination>
 </div>
-
-
-
-
+</div>

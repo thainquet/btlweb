@@ -15,6 +15,7 @@ angular.module('QASystem')
                 $scope.sessionList[i].active = false;
             }
         }
+        
     };
     $scope.isActive = function(index) {
       if ($scope.sessionList[index].active == true) {
@@ -50,6 +51,5 @@ angular.module('QASystem')
            return true;
         }
         $scope.name = user.username;
-      
     } 
 }]);

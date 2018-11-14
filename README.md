@@ -1,6 +1,6 @@
 # 14/10: add API localhost:7777/events
 # 21/10: add login and register to view, add api to serve static file.
-# link tải database: http://bit.ly/2DyNvb1 (file mới update), tải xong import vào localhost/phpmyadmin, nhớ config trong module nếu có lỗi connect db.
+# link tải database: http://bit.ly/2FlJbgY (file mới update), tải xong import vào localhost/phpmyadmin, nhớ config trong module nếu có lỗi connect db.
 # 12/11: Danh sách APIs:
 - localhost:7777/events : trả về tất cả các phiên hiện có và thông tin của chúng.
 - localhost:7777/events/:idEvent: trả về phiên có id = idEvent và thông tin của nó.
@@ -14,6 +14,12 @@
 - localhost:7777/accounts/:id/myquestions : trả về tất cả câu hỏi của người dùng, nếu ko có trả về message là "You have no questions!"
 - localhost:7777/events/:idEvent/open : mở phiên có id = id
 - localhost:7777/events/:idEvent/close : đóng phiên có id = id
+# 14/11:
+- localhost:7777/events/questions/getAll
+- localhost:7777/events/questions/getLikes/:idQuest : trả về số like của question có id = idQuest
+- localhost:7777/events/questions/getLikes/:idQuest/like: thêm id của người like câu hỏi có id = idQuest vào bảng event_like, request.body.id_user là id người like
+- localhost:7777/events/questions/getLikes/:idQuest/unlike: xoá id của người like câu hỏi có id = idQuest vào bảng event_like, request.body.id_user là id người unlike
+- localhost:7777/events/questions/getAllComment/:idQuest : trả về tất cả comment của câu hỏi có id = idQuest
 # Cài đặt
 - Cài đặt git, nodejs và npm
 - Tạo folder mới, clone repo này về, cd đến folder vừa tạo, chạy "npm init".

@@ -43,6 +43,18 @@ angular.module('QASystem')
     $scope.listActivingEvents = [];
     $scope.showEvents = true;
     $scope.showQuestions = false;
+    $scope.isAdmin = function () {
+      if ($window.sessionStorage['isAdmin'] == 1) return true;
+      return false;
+    }
+    $scope.isTeacher = function () {
+      if ($window.sessionStorage['isTeacher'] == 1) return true;
+      return false;
+    }
+    $scope.isStudent = function () {
+      if ($window.sessionStorage['isTeacher'] == 1 || $window.sessionStorage['isAdmin'] == 1) return false;
+      return true;
+    }
 
     // Cai nay tra ve tat ca cac event da dong trong bang event
     $http.get('/events')
@@ -73,6 +85,11 @@ angular.module('QASystem')
 
     // Dong 1 event dang hoat dong
     $scope.closeEvent = function(idEvent) {
+        for (let i = 0; i < $scope.listActivingEvents.length; i++) {
+          if ($scope.listActivingEvents[i].idEvent == idEvent) {
+            $scope.listActivingEvents.splice(i,1);
+          }
+        }
         $http.put('/events/' + idEvent + '/close')
         .then(function successCallback(data) {
             alert('close successful');

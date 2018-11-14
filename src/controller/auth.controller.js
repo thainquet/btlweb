@@ -19,10 +19,10 @@ var auth = {
             success: true,
             data: {
               // Them id cua Quynh vao cho nay
-            id: data[0].id,
-            username: data[0].username,
-            isAdmin: data[0].isAdmin,
-            isTeacher: data[0].isTeacher
+              id: data[0].id,
+              username: data[0].username,
+              isAdmin: data[0].isAdmin,
+              isTeacher: data[0].isTeacher
             }
           })
         } else {
@@ -31,7 +31,7 @@ var auth = {
             message: "wrong username or password"
           })
         }
-        console.log(sql);
+        //console.log(sql);
       }
     })
     console.log(usn + " " + pass)

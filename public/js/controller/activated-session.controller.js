@@ -80,6 +80,18 @@ angular.module('QASystem')
     $scope.listQuestions = [];
     $scope.showQuestions = false;
     $scope.showEvents = true;
+    $scope.isAdmin = function () {
+      if ($window.sessionStorage['isAdmin'] == 1) return true;
+      return false;
+    }
+    $scope.isTeacher = function () {
+      if ($window.sessionStorage['isTeacher'] == 1) return true;
+      return false;
+    }
+    $scope.isStudent = function () {
+      if ($window.sessionStorage['isTeacher'] == 1 || $window.sessionStorage['isAdmin'] == 1) return false;
+      return true;
+    }
 
     // Cai nay tra ve tat ca cac event da dong trong bang event
     $http.get('/events')
