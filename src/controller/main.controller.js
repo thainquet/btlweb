@@ -4,19 +4,7 @@ const path = require('path')
 
 
 var controller = {
-  getIndex: (req, res) => {
-    try {
-      res.sendFile(path.join(__dirname + '../../../public/login.view.html'));
-    } catch (error) {
-      res.send({
-        success: false,
-        reason: error.message
-      })
-    }
-  },
-  
-    getAllEvent : (req, res) => {
-
+    getAllEvent: (req, res) => {
         try {
             let sql = `SELECT idEvent, name as event_name, type, content, status, id as id_creator, 
             username as creator FROM event e JOIN user u on e.id_creator = u.id`
@@ -39,7 +27,7 @@ var controller = {
     },
     getEventbyID: (req, res) => {
         try {
-            let sql = `SELECT idEvent, name as event_name, type, content, status, id as id_creator, 
+            let sql = `SELECT name as event_name, type, content, status, id as id_creator, 
             username as creator FROM event e JOIN user u on e.id_creator = u.id Where 
             idEvent = ` + req.params.idEvent;
             //let i = req.params.idEvent;
@@ -116,9 +104,9 @@ var controller = {
         let idEvent = req.params.idEvent;
         let content = req.body.content;
         let id_user = req.body.id_user;
-        let sql = `INSERT INTO event_question (idEvent, contentQuest, id_user) VALUES (` + idEvent + `,"` + content + `",`+ id_user+ `)`
-       //console.log(sql);
-       
+        let sql = `INSERT INTO event_question (idEvent, contentQuest, id_user) VALUES (` + idEvent + `,"` + content + `",` + id_user + `)`
+        //console.log(sql);
+
         query(con, sql)
             .then(() => {
                 res.send({
@@ -163,6 +151,92 @@ var controller = {
                 })
             })
         //console.log(sql)
+    },
+    getAllQuest : (req, res) => {
+        let sql = `SELECT idQuestion, username , contentQuest as content_question,
+         name as asked_at FROM event_question q JOIN event e ON q.idEvent = e.idEvent JOIN 
+         user u ON q.id_user = u.id `
+        query(con,sql)
+        .then( data => {
+            res.send({
+                success: true,
+                data: data
+            })
+        }).catch(err => {
+            res.send({
+                success: false,
+                message: err
+            })
+        })
+    },
+    getAllLikeByQuestionId : (req,res) => {
+        let sql = `SELECT COUNT(*) as total_like FROM event_like l JOIN user u ON 
+        l.id_liker = u.id WHERE l.idQuestion = ` + req.params.idQuest;
+        query(con,sql)
+        .then( data => {
+            res.send({
+                success: true,
+                data: data
+            })
+        }).catch(err => {
+            res.send({
+                success: false,
+                message: err
+            })
+        })
+    },
+    pressLikeByQuestionId : (req, res) => {
+        let id_liker = req.body.id_user
+        let idQuest = req.params.idQuest
+        let sql = `INSERT INTO event_like (idQuestion, id_liker) 
+        VALUES ('`+ idQuest+ `', '`+id_liker+`')`
+        query(con,sql)
+        .then( data => {
+            res.send({
+                success: true,
+                message: "Liked!"
+            })
+        }).catch(err => {
+            res.send({
+                success: false,
+                message: err
+            })
+        })
+    },
+    pressUnlikeByQuestionId : (req, res) => {
+        let id_unliker = req.body.id_user
+        let idQuest = req.params.idQuest
+        let sql = `DELETE FROM event_like WHERE event_like.id_liker = ` + id_unliker
+        query(con,sql)
+        .then( data => {
+            res.send({
+                success: true,
+                message: "Unliked!"
+            })
+        }).catch(err => {
+            res.send({
+                success: false,
+                message: err
+            })
+        })
+    },
+    getAllCommentByQuestionId : (req, res) => {
+        let idQuest = req.params.idQuest
+        let sql = `SELECT idComment, username as commentor, id_user as id_commentor, 
+        contentComment FROM event_question q JOIN event_comment c ON 
+        q.idQuestion = c.idQuestion JOIN user u ON q.id_user = u.id WHERE q.idQuestion = ` + idQuest
+        query(con,sql)
+        .then( data => {
+            res.send({
+                success: true,
+                message: data
+            })
+        }).catch(err => {
+            res.send({
+                success: false,
+                message: err
+            })
+        })
     }
 }
 
