@@ -1,6 +1,6 @@
 <div ng-controller="activatingSessionCtrl">
   <div class="row" ng-show="showEvents" ng-repeat="session in listActivingEvents">
-    <div class="col-12 col-card" ng-click="getQuestions(session.idEvent)">
+    <a href="" class="col-12 col-card" ng-click="getQuestions(session.idEvent)">
       <div class="media border d-flex align-items-center p-2">
         <div class="border">
           <img src="../img/qa.png" class="img-responsive" />
@@ -12,14 +12,14 @@
           <span class="time-news linkNormal">Số câu hỏi: </span>
         </div>
       </div>
-    </div>
+    </a>
     <button ng-click="closeEvent(session.idEvent)">close</button>
     <button ng-click="createNewQuestion(session.idEvent)">create question</button>
   </div>
   <div ng-show="showQuestions">
       <div class="row" ng-repeat="question in listQuestions">
         <div class="col-12 col-card">
-          <div class="media border d-flex align-items-center p-2">
+          <div class="media border d-flex align-items-center p-2"> 
             <div class="ml-2 p-2 bg-primary d-flex flex-column align-items-center">
               <h4 class="text-white">6</h4>
               <span class="text-white">Lượt thích</span>
@@ -28,11 +28,11 @@
               <h4 class="text-white">0</h4>
               <span class="text-white">Trả lời</span>
             </div>
-            <div class="media-body ml-2 d-flex flex-column justify-content-around">
+            <a href="#/question/{{question.idQuestion}}" class="media-body ml-2 d-flex flex-column justify-content-around">
               <span class="infor-1 redtab">{{question.content_question}}</span>
               <span class="infor-2">Chưa có câu trả lời</span>
               <a href="#" class="time-news linkNormal">Đăng bởi</a>
-            </div>
+            </a>
           </div>
         </div>
         <button ng-click="deleteQuestion(session.idEvent, question.idQuestion)">delete question</button>

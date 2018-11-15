@@ -9,21 +9,25 @@
       </div>
       <div class="card-footer text-primary d-flex">
         <div class="emotion">
-          0
-          <a href="#">
+          {{like}}
+          <a ng-click="addLike()">
             <span class="text-primary">
               <i class="fa fa-thumbs-o-up"></i>
             </span>
           </a>
         </div>
         <div class="emotion">
-          0
-          <a href="#">
+          {{dislike}}
+          <a ng-click="unLike()">
             <span class="text-primary">
               <i class="fa fa-thumbs-o-down"></i>
             </span>
           </a>
         </div>
+      </div>
+      <div class="card-body" ng-repeat="comment in comments">
+        {{comment.contentComment}}
+        abbbc
       </div>
     </div>
   </div>

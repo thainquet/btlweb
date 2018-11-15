@@ -74,7 +74,7 @@
 // ])
 
 angular.module('QASystem')
-.controller('activatedSessionCtrl', function($scope, $http, $window) {
+.controller('activatedSessionCtrl', ['$scope', '$http', '$window', 'questionService', function($scope, $http, $window, questionService) {
     listEvents = [];
     $scope.listActivedEvents = [];
     $scope.listQuestions = [];
@@ -84,7 +84,7 @@ angular.module('QASystem')
     // Cai nay tra ve tat ca cac event da dong trong bang event
     $http.get('/events')
     .then(function successCallback(data) {
-      console.log(data.data.data);
+      // console.log(data.data.data);
         listEvents = data.data.data;
         for(let i = 0 ; i < listEvents.length ; i++) {
           //console.log($scope.listEvents[i]);
@@ -104,7 +104,7 @@ angular.module('QASystem')
       .then(function successCallback(data) {
           $scope.showEvents = false;
           $scope.showQuestions = true;
-          //console.log(data.data.data);
+          console.log(data.data.data);
           $scope.listQuestions = data.data.data;
       }, function(err) {
           console.log(err);
@@ -128,4 +128,4 @@ angular.module('QASystem')
         console.log(err);
       })
     }
-})
+}])

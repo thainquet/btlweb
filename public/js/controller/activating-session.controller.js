@@ -38,7 +38,7 @@
 // }])
 
 angular.module('QASystem')
-.controller('activatingSessionCtrl', function($scope, $http, $window) {
+.controller('activatingSessionCtrl', ['$scope', '$http', '$window', '$uibModal', function($scope, $http, $window, $modal) {
     $scope.listEvents = [];
     $scope.listActivingEvents = [];
     $scope.showEvents = true;
@@ -107,4 +107,4 @@ angular.module('QASystem')
             console.log(err);
         })
     }
-})
+}])
