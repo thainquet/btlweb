@@ -1,14 +1,34 @@
 let express = require('express');
-let controller = require('../controller/main.controller')
-let auth = require("../controller/auth.controller")
+let controller = require('../controller/main.controller');
+let auth = require("../controller/auth.controller");
 
 let router = express.Router();
 
+//-------------------------------------------------------------
+
 router.post('/login', auth.login)
+
+router.post('/register', auth.newAccount)
+
+//-------------------------------------------------------------
+
+router.get('/accounts/detail/:id', auth.checkInfoAccout)
+
+router.put('/accounts/detail/:id/change',auth.changeInfoAccount)
+
+router.get('/accounts/:id/myquestions', controller.getQuestionByUser)
+
+//-------------------------------------------------------------
 
 router.get('/events', controller.getAllEvent)
 
 router.get('/events/:idEvent', controller.getEventbyID)
+
+router.get('/events/questions/getAll', controller.getAllQuest)
+
+router.put('/events/:idEvent/open', controller.openEventById)
+
+router.put('/events/:idEvent/close', controller.closeEventById)
 
 router.get('/events/:idEvent/questions', controller.getQuestionsOfEvent)
 
@@ -16,13 +36,12 @@ router.post('/events/:idEvent/questions/newQuestion', controller.createNewQuesti
 
 router.delete('/events/:idEvent/questions/delete/:idQuest', controller.deleteQuestionById)
 
-//router.get('/', controller.getIndex);
+router.get('/events/questions/getLikes/:idQuest', controller.getAllLikeByQuestionId)
 
-// router.post('/events/newQuestion', controller.postNew)
+router.post('/events/questions/getLikes/:idQuest/like', controller.pressLikeByQuestionId)
 
-// router.put('/events/update/:id', controller.updateOne)
+router.post('/events/questions/getLikes/:idQuest/unlike', controller.pressUnlikeByQuestionId)
 
-// router.delete('/ads/delete/:id', controller.deleteById)
-
+router.get('/events/questions/getAllComment/:idQuest', controller.getAllCommentByQuestionId)
 
 module.exports = router;
