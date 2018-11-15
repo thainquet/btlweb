@@ -11,6 +11,5 @@ angular.module('QASystem', ['ngRoute'])
     templateUrl: 'view/home.view.html',
     controller: 'homeCtrl'
   });
-
 }])
 
