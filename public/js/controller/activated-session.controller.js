@@ -92,7 +92,7 @@ angular.module('QASystem')
       if ($window.sessionStorage['isTeacher'] == 1 || $window.sessionStorage['isAdmin'] == 1) return false;
       return true;
     }
-
+  
     // Cai nay tra ve tat ca cac event da dong trong bang event
     $http.get('/events')
     .then(function successCallback(data) {

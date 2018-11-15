@@ -22,12 +22,7 @@ let showEvent = () => {
 }
 
 let logOut = ()=> {
-  window.location.assign('/')
+  window.sessionStorage.clear();
+  location.replace('/');
 }
 
-// angular.module('QASystem', ['ngRoute'])
-// .config('$routeProvider', function($routeProvider) {
-//   routeProvider.when('/home', {
-//     templateUrl: 'public/view/home.html'
-//   })
-// })

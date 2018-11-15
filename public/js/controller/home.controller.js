@@ -1,5 +1,6 @@
 angular.module('QASystem')
-.controller('homeCtrl', ['$scope', function($scope) {
+.controller('homeCtrl', ['$scope', '$window', function($scope, $window) {
+    
     $scope.pageHeader = {
         title: "DANH SÁCH PHIÊN HỎI ĐÁP HOẠT ĐỘNG"
     };
@@ -31,6 +32,7 @@ angular.module('QASystem')
     $scope.name = "";
     $scope.isLoggedIn = function () {
         if ($window.sessionStorage['user']) {
+            //console.log("Ahihi: " + $window.sessionStorage['isAdmin']);
             return true;
         } else {
             return false;
