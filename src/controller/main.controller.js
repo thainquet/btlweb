@@ -279,6 +279,23 @@ var controller = {
                 message: err
             })
         })
+    },
+    getQuestionByID : (req, res) => {
+        let idQuest = req.params.idQuest
+        let sql = `SELECT * FROM event_question WHERE idQuestion = ` + idQuest
+
+        query(con, sql)
+        .then(data => {
+            res.send({
+                success: true,
+                message: data
+            })
+        }).catch(err => {
+            res.send({
+                success: false,
+                message: err
+            })
+        })
     }
 }
 

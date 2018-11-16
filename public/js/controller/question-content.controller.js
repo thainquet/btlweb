@@ -10,6 +10,7 @@ angular.module('QASystem')
     $scope.like = 0;
     $scope.dislike = 0;
 
+    // Lay trang thai dong/mo cua event bang questionid 
     $http.get('/events/questions/' + idQuest + '/status')
     .then(function successCallback(data) {
         //console.log(data.data.message[0].status);
@@ -19,6 +20,7 @@ angular.module('QASystem')
         console.log(err);
     })
 
+    // Kiem tra xem cau hoi co phai cua phien hoi dap dang hoat dong khong
     $scope.isActivingSession = function() {
         if(eventStatus == 1) {
             return true;
@@ -27,13 +29,17 @@ angular.module('QASystem')
         }
     }
 
-    // if(eventStatus === 1) {
-    //     $scope.isActivingSession = true;
-    //     //console.log(eventStatus)
-    // } else {
-    //     $scope.isActivingSession = false;
-    // }
+    // Ham lay cau hoi bang id cua no
+    $scope.question = [];
+    $http.get('/event/questions/' + idQuest)
+    .then(function successCallback(data) {
+        $scope.question = data.data.message[0]
+        //console.log($scope.question.contentQuest);
+        }, function(err) {
+        console.log(err);
+    })
 
+    // Lay so like cua cau hoi bang ID cua no
     getLikesByQuestionID = function() {
         $http.get('/events/questions/getLikes/' + idQuest)
         .then(function successCallback(data) {
@@ -44,6 +50,7 @@ angular.module('QASystem')
         })
     }
 
+    // Ham tang like khi click vao nut like
     $scope.addLike = function() { 
         $http.post('/events/questions/getLikes/' + idQuest + '/like', idUser)
         .then(function successCallback(data) {
@@ -56,6 +63,7 @@ angular.module('QASystem')
         })
     }
 
+    // Ham tang dislike khi click vao nut dislike
    $scope.unLike = function() {
        $http.post('/events/questions/getLikes/' + idQuest + '/unlike', idUser)
        .then(function successCallback(data) {
@@ -71,6 +79,7 @@ angular.module('QASystem')
    }
 
     $scope.comments = [];
+    // Ham lay tat ca cac comment cua 1 cau hoi
     $http.get('/events/questions/getAllComment/' + idQuest)
     .then(function successCallback(data) {
          $timeout(function () {
@@ -85,6 +94,7 @@ angular.module('QASystem')
     $scope.cmt = {
         content : ""
     }
+    // Ham tao 1 comment moi
     createNewComment = function() {
         $http.post('/events/questions/' + idQuest + '/newComment', $scope.cmt)
         .then(function successCallback(data) {
@@ -108,6 +118,7 @@ angular.module('QASystem')
         })
     }
 
+    // Su kien khi click vao nut comment
     $scope.onSubmit = function() {
         createNewComment();
         $scope.cmt = {
