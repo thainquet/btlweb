@@ -74,12 +74,15 @@
           </div> -->
         </div>
       </div>
-      <div class="col-12 col-card" ng-show="eventStatus">
-        <div class="card">
-          <input type="text" class="card-body" placeholder="Type to comment" ng-model="cmt.content">
-        </div>
-        <button ng-click="onSubmit()">Comment</button>
-      </div>     
+      <div>
+        <div class="col-12 col-card" ng-show="isActivingSession()">
+          <div class="card">
+            <input type="text" class="card-body" placeholder="Type to comment" ng-model="cmt.content">
+          </div>
+          <button ng-click="onSubmit()">Comment</button>
+        </div> 
+        <div ng-hide="isActivingSession()"></div>    
+      </div>
     </div>
   </div>
 </div>

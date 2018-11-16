@@ -5,7 +5,7 @@ angular.module('QASystem')
     let idUser = {
         id_user: user.id
     };
-    $scope.eventStatus = 0;
+    let eventStatus = 0;
     //$scope.isActivingSession = true;
     $scope.like = 0;
     $scope.dislike = 0;
@@ -13,11 +13,19 @@ angular.module('QASystem')
     $http.get('/events/questions/' + idQuest + '/status')
     .then(function successCallback(data) {
         //console.log(data.data.message[0].status);
-        $scope.eventStatus = data.data.message[0].status;
+        eventStatus = data.data.message[0].status;
         //console.log(eventStatus);
     }, function(err) {
         console.log(err);
     })
+
+    $scope.isActivingSession = function() {
+        if(eventStatus == 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
 
     // if(eventStatus === 1) {
     //     $scope.isActivingSession = true;
