@@ -38,16 +38,30 @@
 // }])
 
 angular.module('QASystem')
-.controller('activatingSessionCtrl', ['$scope', '$http', '$window', '$uibModal', function($scope, $http, $window, $modal) {
+.controller('activatingSessionCtrl', function($scope, $http, $window) {
     $scope.listEvents = [];
     $scope.listActivingEvents = [];
     $scope.showEvents = true;
     $scope.showQuestions = false;
+    $scope.isAdmin = function () {
+      if ($window.sessionStorage['isAdmin'] == 1) return true;
+      return false;
+    }
+    $scope.isTeacher = function () {
+      if ($window.sessionStorage['isTeacher'] == 1) return true;
+      return false;
+    }
+    $scope.isStudent = function () {
+      if ($window.sessionStorage['isTeacher'] == 1 || $window.sessionStorage['isAdmin'] == 1) return false;
+      return true;
+    }
 
     // Cai nay tra ve tat ca cac event da dong trong bang event
     $http.get('/events')
     .then(function successCallback(data) {
         $scope.listEvents = data.data.data;
+        // console.log($scope.listEvents);
+        // console.log(data);
         for(let i = 0 ; i < $scope.listEvents.length ; i++) {
             if($scope.listEvents[i].status == 1) {
                 console.log(i);
@@ -57,6 +71,7 @@ angular.module('QASystem')
     }, function(err) {
         console.log(err);
     });  
+
     
     // Tra ve tat ca cau hoi theo id cua event
     $scope.getQuestions = function(idEvent) {
@@ -64,7 +79,7 @@ angular.module('QASystem')
         .then(function successCallback(data) {
             $scope.showEvents = false;
             $scope.showQuestions = true;
-            console.log(data.data.data);
+            //console.log(data.data.data);
             $scope.listQuestions = data.data.data;
         }, function(err) {
             console.log(err);
@@ -73,6 +88,11 @@ angular.module('QASystem')
 
     // Dong 1 event dang hoat dong
     $scope.closeEvent = function(idEvent) {
+        for (let i = 0; i < $scope.listActivingEvents.length; i++) {
+          if ($scope.listActivingEvents[i].idEvent == idEvent) {
+            $scope.listActivingEvents.splice(i,1);
+          }
+        }
         $http.put('/events/' + idEvent + '/close')
         .then(function successCallback(data) {
             alert('close successful');
@@ -83,11 +103,13 @@ angular.module('QASystem')
 
     // Tao 1 cau hoi moi cho event
     let user = JSON.parse($window.sessionStorage['user']);
+    console.log(user);
+    
     $scope.createNewQuestion = function(idEvent) {
-        console.log(idEvent);
+        //console.log(idEvent);
         let a = {
             id_user : user.id,
-            content: 'nhffb'
+            content: 'nhffbdvvdv'
         }
         $http.post('/events/' + idEvent + '/questions/newQuestion', a)
         .then(function successCallback(data) {
@@ -107,4 +129,4 @@ angular.module('QASystem')
             console.log(err);
         })
     }
-}])
+})

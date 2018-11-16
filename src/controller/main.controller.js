@@ -6,8 +6,9 @@ const path = require('path')
 var controller = {
     getAllEvent: (req, res) => {
         try {
-            let sql = `SELECT idEvent, name as event_name, type, content, status, id as id_creator, 
-            username as creator FROM event e JOIN user u on e.id_creator = u.id`
+            let sql = `SELECT e.idEvent, name as event_name, type, content, status, id as id_creator, 
+            username as creator, count(eq.idEvent) as question_count FROM event e JOIN user u on e.id_creator = u.id 
+            left join event_question eq on eq.idEvent = e.idEvent group by e.idEvent`;
             query(con, sql)
                 .then(data => {
                     let metadata = {
@@ -106,6 +107,7 @@ var controller = {
         let id_user = req.body.id_user;
         let sql = `INSERT INTO event_question (idEvent, contentQuest, id_user) VALUES (` + idEvent + `,"` + content + `",` + id_user + `)`
         //console.log(sql);
+        // console.log(req.body);
 
         query(con, sql)
             .then(() => {
@@ -153,9 +155,9 @@ var controller = {
         //console.log(sql)
     },
     getAllQuest : (req, res) => {
-        let sql = `SELECT idQuestion, username , contentQuest as content_question,
-         name as asked_at FROM event_question q JOIN event e ON q.idEvent = e.idEvent JOIN 
-         user u ON q.id_user = u.id `
+        let sql = `SELECT q.idQuestion, username , contentQuest as content_question, answer_count,
+         name as asked_at, count(el.idQuestion) as like_count FROM event_question q JOIN event e ON q.idEvent = e.idEvent JOIN 
+         user u ON q.id_user = u.id left join event_like el on el.idQuestion = q.idQuestion group by q.idQuestion`;
         query(con,sql)
         .then( data => {
             res.send({
@@ -188,6 +190,7 @@ var controller = {
     pressLikeByQuestionId : (req, res) => {
         let id_liker = req.body.id_user
         let idQuest = req.params.idQuest
+        // console.log(id_liker);
         let sql = `INSERT INTO event_like (idQuestion, id_liker) 
         VALUES ('`+ idQuest+ `', '`+id_liker+`')`
         query(con,sql)
@@ -227,6 +230,45 @@ var controller = {
         q.idQuestion = c.idQuestion JOIN user u ON q.id_user = u.id WHERE q.idQuestion = ` + idQuest
         query(con,sql)
         .then( data => {
+            res.send({
+                success: true,
+                message: data
+            })
+        }).catch(err => {
+            res.send({
+                success: false,
+                message: err
+            })
+        })
+    },
+    createNewComment : (req, res) => {
+        let idQuest = req.params.idQuest
+        let content = req.body.content;
+        //let id_user = req.body.id_user;
+        let sql = `INSERT INTO event_comment (idQuestion, contentComment) VALUES ("` + idQuest + `","` + content + `")`;
+         
+        console.log(sql);
+        query(con, sql)
+        .then(() => {
+            res.send({
+                content: content,
+                success: true,
+                message: "add new comment successfully!"
+            })
+        }).catch(err => {
+            res.send({
+                success: false,
+                message: err
+            })
+        })
+    },
+    getEventStatusByQuestionID : (req, res) => {
+        let idQuest = req.params.idQuest
+        let sql = `SELECT e.status FROM event e JOIN event_question eq ON e.idEvent = eq.idEvent WHERE idQuestion = ` + idQuest;
+
+        //console.log(sql);
+        query(con, sql)
+        .then(data => {
             res.send({
                 success: true,
                 message: data

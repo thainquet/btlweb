@@ -15,6 +15,7 @@ angular.module('QASystem')
                 $scope.sessionList[i].active = false;
             }
         }
+        
     };
     $scope.isActive = function(index) {
       if ($scope.sessionList[index].active == true) {
@@ -27,16 +28,28 @@ angular.module('QASystem')
 
 angular.module('QASystem')
 .controller('navCtrl', ['$scope', '$window', function($scope, $window) {
-    // $scope.name = "";
-    // $scope.isLoggedIn = function () {
-    //     if ($window.sessionStorage['user']) {
-    //         return true;
-    //     } else {
-    //         return false;
-    //     }
-    // }
-    // if ($scope.isLoggedIn() == true) {
-    //     let user = JSON.parse($window.sessionStorage['user']);
-    //     $scope.name = user.username;
-    // } 
+    $scope.name = "";
+    $scope.isLoggedIn = function () {
+        if ($window.sessionStorage['user']) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+    if ($scope.isLoggedIn() == true) {
+        let user = JSON.parse($window.sessionStorage['user']);
+        $scope.isAdmin = function() {
+          if ($window.sessionStorage['isAdmin'] == 1) return true;
+          return false;
+        }
+        $scope.isTeacher = function() {
+          if ($window.sessionStorage['isTeacher'] == 1) return true;
+          return false;
+        }
+        $scope.isStudent = function() {
+           if ($window.sessionStorage['isTeacher'] == 1 || $window.sessionStorage['isAdmin'] == 1) return false;
+           return true;
+        }
+        $scope.name = user.username;
+    } 
 }]);

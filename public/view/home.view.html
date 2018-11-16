@@ -1,4 +1,4 @@
-<page-header></page-header>
+<!-- <page-header></page-header> -->
 <div class="modal fade" id="edit-user-infor" tabindex="-1" role="dialog" aria-labelledby="editUserInfor" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -76,8 +76,8 @@
       </activated-session>
     </div>
   </div>
-  <div ng-if="isActive(2)" ng-controller="eventCtrl">
-    <div ng-repeat="event in listEvents">{{event.event_name}}</div>
+  <div ng-if="isActive(2)">
+    <all-questions></all-questions>
   </div>
 </div>
 <!-- <div class="content-page__pagination">
@@ -91,5 +91,5 @@
 </div> -->
 <img src="https://www.graphicdome.com/wp-content/themes/squarecode-wp/img/back-to-top.png" onclick="topFunction()" id="imageBackToTop"
   class="float-right">
-<page-footer></page-footer>
+<!-- <page-footer></page-footer> -->
 

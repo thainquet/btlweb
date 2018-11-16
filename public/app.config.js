@@ -1,6 +1,6 @@
 'use trict';
 
-angular.module('QASystem', ['ngRoute',  'ui.bootstrap'])
+angular.module('QASystem', ['ngRoute'])
 .config(['$routeProvider', function($routeProvider) {
   $routeProvider.when('/', {
     templateUrl: 'view/auth/login.view.html',
@@ -13,7 +13,7 @@ angular.module('QASystem', ['ngRoute',  'ui.bootstrap'])
   });
 
   $routeProvider.when('/question/:idQuestion', {
-    templateUrl: 'view/question-content.view.html',
+    templateUrl: 'view/question/question-content.view.html',
     controller: 'questionContentCtrl'
   });
 

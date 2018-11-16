@@ -44,4 +44,8 @@ router.post('/events/questions/getLikes/:idQuest/unlike', controller.pressUnlike
 
 router.get('/events/questions/getAllComment/:idQuest', controller.getAllCommentByQuestionId)
 
+router.post('/events/questions/:idQuest/newComment', controller.createNewComment)
+
+router.get('/events/questions/:idQuest/status', controller.getEventStatusByQuestionID)
+
 module.exports = router;

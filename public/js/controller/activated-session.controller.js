@@ -74,17 +74,29 @@
 // ])
 
 angular.module('QASystem')
-.controller('activatedSessionCtrl', ['$scope', '$http', '$window', 'questionService', function($scope, $http, $window, questionService) {
+.controller('activatedSessionCtrl', function($scope, $http, $window) {
     listEvents = [];
     $scope.listActivedEvents = [];
     $scope.listQuestions = [];
     $scope.showQuestions = false;
     $scope.showEvents = true;
+    $scope.isAdmin = function () {
+      if ($window.sessionStorage['isAdmin'] == 1) return true;
+      return false;
+    }
+    $scope.isTeacher = function () {
+      if ($window.sessionStorage['isTeacher'] == 1) return true;
+      return false;
+    }
+    $scope.isStudent = function () {
+      if ($window.sessionStorage['isTeacher'] == 1 || $window.sessionStorage['isAdmin'] == 1) return false;
+      return true;
+    }
 
     // Cai nay tra ve tat ca cac event da dong trong bang event
     $http.get('/events')
     .then(function successCallback(data) {
-      // console.log(data.data.data);
+      console.log(data.data.data);
         listEvents = data.data.data;
         for(let i = 0 ; i < listEvents.length ; i++) {
           //console.log($scope.listEvents[i]);
@@ -104,7 +116,7 @@ angular.module('QASystem')
       .then(function successCallback(data) {
           $scope.showEvents = false;
           $scope.showQuestions = true;
-          console.log(data.data.data);
+          //console.log(data.data.data);
           $scope.listQuestions = data.data.data;
       }, function(err) {
           console.log(err);
@@ -128,4 +140,4 @@ angular.module('QASystem')
         console.log(err);
       })
     }
-}])
+})
