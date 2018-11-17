@@ -16,12 +16,15 @@ angular.module('QASystem')
     function doLogin() {
       $http.post('/login', $scope.user)
         .then(function successCallback(data) {
+          console.log("Data: " + data);
+          console.log("Type: " + typeof data);
           if (data.data.success) {
             $window.sessionStorage['user'] = JSON.stringify($scope.user);
-            $window.sessionStorage['isAdmin'] = JSON.stringify(data.data.data.isAdmin);
-            $window.sessionStorage['isTeacher'] = JSON.stringify(data.data.data.isTeacher);
-            console.log("here" + $window.sessionStorage['isAdmin']);
-            $location.path('/home');
+            $window.sessionStorage['isAdmin'] = (data.data.data.isAdmin);
+            $window.sessionStorage['isTeacher'] = (data.data.data.isTeacher);
+            console.log("here " + $window.sessionStorage['user']);
+            console.log("here " + $window.sessionStorage['isAdmin']);
+            $location.path('/home');  
           } else {
             alert('username or password is incorrect');
           }

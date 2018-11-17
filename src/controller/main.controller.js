@@ -8,7 +8,7 @@ var controller = {
         try {
             let sql = `SELECT e.idEvent, name as event_name, type, content, status, id as id_creator, 
             username as creator, count(eq.idEvent) as question_count FROM event e JOIN user u on e.id_creator = u.id 
-            left join event_question eq on eq.idEvent = e.idEvent group by eq.idEvent`;
+            left join event_question eq on eq.idEvent = e.idEvent group by e.idEvent`;
             query(con, sql)
                 .then(data => {
                     let metadata = {
