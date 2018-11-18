@@ -23,7 +23,7 @@ router.get('/accounts/:id/myquestions', controller.getQuestionByUser)
 router.get('/events', controller.getAllEvent)
 
 router.get('/events/:idEvent', controller.getEventbyID)
-
+router.get('/events/users/getAll', controller.getAllUser)
 router.get('/events/questions/getAll', controller.getAllQuest)
 
 router.put('/events/:idEvent/open', controller.openEventById)
@@ -43,5 +43,13 @@ router.post('/events/questions/getLikes/:idQuest/like', controller.pressLikeByQu
 router.post('/events/questions/getLikes/:idQuest/unlike', controller.pressUnlikeByQuestionId)
 
 router.get('/events/questions/getAllComment/:idQuest', controller.getAllCommentByQuestionId)
+
+//-----------------------------------------------------------------------------------------
+
+router.post('/events/questions/:idQuest/newComment', controller.createNewComment)
+
+router.get('/events/questions/:idQuest/status', controller.getEventStatusByQuestionID)
+
+router.get('/event/questions/:idQuest', controller.getQuestionByID)
 
 module.exports = router;
