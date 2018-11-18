@@ -136,27 +136,27 @@ var auth = {
 
 }
 
-<<<<<<< HEAD
-// register = function(req, res) {
-//     user.findOne({
-//         where: {
-//             username: req.body.username
-//         }
-//     }).then((user) => {
-//         if(user == null) {
-//             user.
-//         }
-//     })
-// }
+// <<<<<<< HEAD
+// // register = function(req, res) {
+// //     user.findOne({
+// //         where: {
+// //             username: req.body.username
+// //         }
+// //     }).then((user) => {
+// //         if(user == null) {
+// //             user.
+// //         }
+// //     })
+// // }
 
-function query(con, sql, i) {
-    return new Promise((resolve, reject) => {
-        con.query(sql, i, function (err, result) {
-            if (err) return reject(err);
-            return resolve(result);
-        });
-    })
-=======
+// function query(con, sql, i) {
+//     return new Promise((resolve, reject) => {
+//         con.query(sql, i, function (err, result) {
+//             if (err) return reject(err);
+//             return resolve(result);
+//         });
+//     })
+// =======
 function queryT(con, sql, i) {
   return new Promise((resolve, reject) => {
     con.query(sql, i, function (err, result) {
@@ -173,7 +173,6 @@ function queryP(con, sql) {
       return resolve(result);
     });
   })
->>>>>>> f96c7e28ff78af1a43501b5d353e4dec6d5f4aaa
 }
 
 module.exports = auth;

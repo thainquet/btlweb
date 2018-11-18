@@ -1,0 +1,69 @@
+<div ng-controller="activatingSessionCtrl">
+  <div class="row pointer" ng-show="showEvents" ng-repeat="session in listActivingEvents">
+    <div class="col-12 col-card" ng-click="getQuestions(session.idEvent)">
+      <div class="media border d-flex align-items-center p-2">
+        <div class="border">
+          <img src="../img/qa.png" class="img-responsive" />
+        </div>
+        <div class="media-body ml-2 d-flex flex-column justify-content-around">
+          <span class="infor-1 redtab">{{session.event_name}}</span>
+          <span class="infor-2">Chủ tọa: {{session.creator}}</span>
+          <span class="time-news linkNormal">Đang hoạt động</span>
+          <span class="time-news linkNormal">Số câu hỏi: {{session.question_count}} </span>
+        </div>
+      </div>
+      <button type="button" class="btn btn-sm btn-warning" ng-if="isAdmin()" ng-click="closeEvent(session.idEvent)">Đóng</button>
+      <button type="button" class="btn btn-sm btn-primary" ng-click="createNewQuestion(session.idEvent)">Đặt câu hỏi</button>
+      <button type="button" class="btn btn-sm btn-danger" ng-if="isAdmin()" ng-click="openSession(session.idEvent)">Xóa</button>
+    </div>
+  </div>
+  <div ng-show="showQuestions">
+    <button type="button" class="btn btn-light text-primary" ng-click="back()">Back</button>
+
+    <session-detail></session-detail>
+
+    <div class="row" ng-repeat="question in listQuestions">
+      <div class="col-12 col-card">
+        <div class="media border d-flex align-items-center p-2">
+          <div class="ml-2 p-2 bg-primary d-flex flex-column align-items-center">
+            <h4 class="text-white">{{question.like_count}}</h4>
+            <span class="text-white">Lượt thích</span>
+          </div>
+          <div class="ml-2 p-2 bg-danger d-flex flex-column align-items-center">
+            <h4 class="text-white">{{question.answer_count}}</h4>
+            <span class="text-white">Trả lời</span>
+          </div>
+          <a href="#/question/{{question.idQuestion}}" class="media-body ml-2 d-flex flex-column justify-content-around">
+            <span class="infor-1 redtab">{{question.content_question}}</span>
+            <a href="#" class="time-news linkNormal">Đăng bởi: {{question['username']}}</a>
+          </a>
+        </div>
+        <div ng-if="isAdmin()">
+          <button type="button" class="btn btn-danger" ng-click="deleteQuestion(session.idEvent, question.idQuestion)">delete
+            question</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div ng-if="isTeacher()">
+    <div class="col-12 col-card">
+      <div class="card">
+          <label>Tên hội thảo: </label>
+          <input type="text" class="card-body" ng-model="newEvent.name">
+        </div>
+      <div class="card">
+        <label>Nội dung: </label>
+        <input type="text" class="card-body" ng-model="newEvent.content">
+      </div>
+      <div class="card">
+        <label>Loại hội thảo: </label>
+        <input type="text" class="card-body" ng-model="newEvent.type">
+      </div>
+      <br>
+      <button type="button" class="btn btn-sm btn-primary" ng-click="onCreateNewEvent()">Tạo hội thảo</button>
+    </div>     
+  </div>
+</div>
+  <item-pagination></item-pagination>
+</div>
+</div>

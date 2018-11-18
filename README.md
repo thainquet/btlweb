@@ -37,8 +37,4 @@
 - API them cau tra loi cho cau hoi
 - API them	hản hồi về câu trả lời cho câu hỏi (Comment for answer)
 - API tạo người dùng mới.
-<<<<<<< HEAD
-- API sửa đổi thông tin người dùng. 
-=======
 - API sửa đổi thông tin người dùng.
->>>>>>> quynh

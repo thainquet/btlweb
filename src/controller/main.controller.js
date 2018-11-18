@@ -8,7 +8,7 @@ var controller = {
         try {
             let sql = `SELECT e.idEvent, name as event_name, type, content, status, id as id_creator, 
             username as creator, count(eq.idEvent) as question_count FROM event e JOIN user u on e.id_creator = u.id 
-            left join event_question eq on eq.idEvent = e.idEvent group by eq.idEvent`;
+            left join event_question eq on eq.idEvent = e.idEvent group by e.idEvent`;
             query(con, sql)
                 .then(data => {
                     let metadata = {
@@ -86,7 +86,9 @@ var controller = {
     },
     getQuestionsOfEvent: (req, res) => {
         try {
-            let sql = "SELECT idQuestion, username , contentQuest as content_question FROM event_question q JOIN event e ON q.idEvent = e.idEvent JOIN user u ON q.id_user = u.id WHERE q.idEvent =" + req.params.idEvent;
+            let sql = `SELECT q.idQuestion, username , contentQuest as content_question, answer_count, 
+            name as asked_at, count(el.idQuestion) as like_count FROM event_question q JOIN event e ON q.idEvent = e.idEvent JOIN
+            user u ON q.id_user = u.id left join event_like el on el.idQuestion = q.idQuestion WHERE q.idEvent = ` + req.params.idEvent + ` group by q.idQuestion`;
             //let i = req.params.idEvent;
             query(con, sql)
                 .then(data => res.send({
@@ -107,6 +109,7 @@ var controller = {
         let id_user = req.body.id_user;
         let sql = `INSERT INTO event_question (idEvent, contentQuest, id_user) VALUES (` + idEvent + `,"` + content + `",` + id_user + `)`
         //console.log(sql);
+        // console.log(req.body);
 
         query(con, sql)
             .then(() => {
@@ -153,6 +156,22 @@ var controller = {
             })
         //console.log(sql)
     },
+    getAllUser: (req, res) => {
+      let sql = `select u.id, u.username, u.email, u.isAdmin, u.isTeacher, count(eq.idQuestion) as question_count from user u
+      left join event_question eq on eq.id_user = u.id group by u.id;`;
+      query(con, sql)
+        .then(data => {
+          res.send({
+            success: true,
+            data: data
+          })
+        }).catch(err => {
+          res.send({
+            success: false,
+            message: err
+          })
+        })
+    },
     getAllQuest : (req, res) => {
         let sql = `SELECT q.idQuestion, username , contentQuest as content_question, answer_count,
          name as asked_at, count(el.idQuestion) as like_count FROM event_question q JOIN event e ON q.idEvent = e.idEvent JOIN 
@@ -189,6 +208,7 @@ var controller = {
     pressLikeByQuestionId : (req, res) => {
         let id_liker = req.body.id_user
         let idQuest = req.params.idQuest
+        // console.log(id_liker);
         let sql = `INSERT INTO event_like (idQuestion, id_liker) 
         VALUES ('`+ idQuest+ `', '`+id_liker+`')`
         query(con,sql)
@@ -238,6 +258,113 @@ var controller = {
                 message: err
             })
         })
+    },
+    createNewComment : (req, res) => {
+        let idQuest = req.params.idQuest
+        let content = req.body.content;
+        //let id_user = req.body.id_user;
+        let sql = `INSERT INTO event_comment (idQuestion, contentComment) VALUES ("` + idQuest + `","` + content + `")`;
+         
+        console.log(sql);
+        query(con, sql)
+        .then(() => {
+            res.send({
+                content: content,
+                success: true,
+                message: "add new comment successfully!"
+            })
+        }).catch(err => {
+            res.send({
+                success: false,
+                message: err
+            })
+        })
+    },
+     createNewUser: (req, res) => {
+       //let id = req.body.id;
+       let username = req.body.username;
+       let email = req.body.email;
+       let password = req.body.password;
+       let isAdmin = req.body.isAdmin;
+       let isTeacher = req.body.isTeacher;
+       //let id_user = req.body.id_user;
+       let sql = `INSERT INTO user(username, password, email, isAdmin, isTeacher) VALUES ("` + username + `","` + password +`",
+       "` + email +`", "` + isAdmin +`","` + isTeacher + `")`;
+
+       // console.log(sql);
+       query(con, sql)
+         .then(() => {
+           res.send({
+             content: content,
+             success: true,
+             message: "add new user successfully!"
+           })
+         }).catch(err => {
+           res.send({
+             success: false,
+             message: err
+           })
+         })
+     },
+    getEventStatusByQuestionID : (req, res) => {
+        let idQuest = req.params.idQuest
+        let sql = `SELECT e.status FROM event e JOIN event_question eq ON e.idEvent = eq.idEvent WHERE idQuestion = ` + idQuest;
+        
+        //console.log(sql);
+        query(con, sql)
+        .then(data => {
+            res.send({
+                success: true,
+                message: data
+            })
+        }).catch(err => {
+            res.send({
+                success: false,
+                message: err
+            })
+        })
+    },
+    getQuestionByID : (req, res) => {
+        let idQuest = req.params.idQuest
+        let sql = `SELECT * FROM event_question WHERE idQuestion = ` + idQuest
+
+        query(con, sql)
+        .then(data => {
+            res.send({
+                success: true,
+                message: data
+            })
+        }).catch(err => {
+            res.send({
+                success: false,
+                message: err
+            })
+        })
+    },
+    createNewEvent : (req, res) => {
+        //let idEvent = req.params.idEvent;
+        let content = req.body.content;
+        let name = req.body.name;
+        let id_user = req.body.id_user;
+        let type = req.body.type;
+        let status = req.body.status;
+        let sql = `INSERT INTO event (content, id_creator, name, type, status) VALUES ("` 
+        + content + `", "` + id_user + `", "` + name + `", "` + type + `", "` + status + `")`
+        // console.log(sql);
+        //console.log(req.body);
+
+        query(con, sql)
+            .then(data => {
+                res.send({
+                    success: true,
+                    message: "add new event successfully!"
+                })
+            }).catch(err => {
+                res.send({
+                    success: false,
+                    message: err
+                })
+            })
     }
 }
 
