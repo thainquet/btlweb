@@ -281,15 +281,14 @@ var controller = {
         })
     },
      createNewUser: (req, res) => {
-       let id = req.body.id;
+       //let id = req.body.id;
        let username = req.body.username;
        let email = req.body.email;
        let password = req.body.password;
        let isAdmin = req.body.isAdmin;
        let isTeacher = req.body.isTeacher;
        //let id_user = req.body.id_user;
-       let sql = `INSERT INTO user VALUES ("` + id + `","` + username + `","` + password +`",
-       "` + email +`", "` + isAdmin +`","` + isTeacher + `")`;
+       let sql = `INSERT INTO user(username, password, email, isAdmin, isTeacher) VALUES ("` + username + `","`+ password +`","` + email +`", "` + isAdmin +`","` + isTeacher + `")`;
 
        console.log(sql);
        query(con, sql)

@@ -32,6 +32,7 @@ router.put('/events/:idEvent/close', controller.closeEventById)
 
 router.get('/events/:idEvent/questions', controller.getQuestionsOfEvent)
 
+router.post('/events/user/add', controller.createNewUser);
 router.post('/events/:idEvent/questions/newQuestion', controller.createNewQuestionOfEvent)
 
 router.delete('/events/:idEvent/questions/delete/:idQuest', controller.deleteQuestionById)
