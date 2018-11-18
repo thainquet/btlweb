@@ -26,5 +26,11 @@ angular.module('QASystem', ['ngRoute'])
     templateUrl: 'view/question/question-list.view.html',
     controller: 'questionListCtrl'
   })
+
+   $routeProvider.when('/event/account/:idUser', {
+     templateUrl: 'view/session/session-list.view.html',
+     controller: 'sessionListCtrl'
+   })
+  
 }])
 

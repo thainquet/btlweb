@@ -18,6 +18,8 @@ router.post('/accounts/detail/change',controller.changeInforAccount2)
 
 router.get('/accounts/:id/myquestions', controller.getQuestionByUser)
 
+router.get('/accounts/:id/myevents', controller.getEventByUser)
+
 //-------------------------------------------------------------
 
 router.get('/events', controller.getAllEvent)

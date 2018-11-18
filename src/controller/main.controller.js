@@ -163,6 +163,31 @@ var controller = {
             })
         //console.log(sql)
     },
+     getEventByUser: (req, res) => {
+       let idUser = req.params.id;
+       let sql = `select * from event where id_creator = ` + idUser;
+       query(con, sql)
+         .then(data => {
+           if (data.length == 0) {
+             res.send({
+               success: true,
+               message: "You have no events!"
+             })
+           } else {
+             res.send({
+               success: true,
+               data: data
+             })
+           }
+         })
+         .catch(err => {
+           res.send({
+             success: false,
+             message: err
+           })
+         })
+       //console.log(sql)
+     },
     getAllUser: (req, res) => {
       let sql = `select u.id, u.username, u.email, u.isAdmin, u.isTeacher, u.password ,count(eq.idQuestion) as question_count from user u
       left join event_question eq on eq.id_user = u.id group by u.id;`;
@@ -313,7 +338,7 @@ var controller = {
            })
          })
      },
-  
+     
     getEventStatusByQuestionID : (req, res) => {
         let idQuest = req.params.idQuest
         let sql = `SELECT e.status FROM event e JOIN event_question eq ON e.idEvent = eq.idEvent WHERE idQuestion = ` + idQuest;
@@ -335,7 +360,6 @@ var controller = {
     getQuestionByID : (req, res) => {
         let idQuest = req.params.idQuest
         let sql = `SELECT * FROM event_question WHERE idQuestion = ` + idQuest;
-
         query(con, sql)
         .then(data => {
             res.send({
