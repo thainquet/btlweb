@@ -164,7 +164,7 @@ var controller = {
         //console.log(sql)
     },
     getAllUser: (req, res) => {
-      let sql = `select u.id, u.username, u.email, u.isAdmin, u.isTeacher, count(eq.idQuestion) as question_count from user u
+      let sql = `select u.id, u.username, u.email, u.isAdmin, u.isTeacher, u.password ,count(eq.idQuestion) as question_count from user u
       left join event_question eq on eq.id_user = u.id group by u.id;`;
       query(con, sql)
         .then(data => {
@@ -196,6 +196,7 @@ var controller = {
             })
         })
     },
+    
     getAllLikeByQuestionId : (req,res) => {
         let sql = `SELECT COUNT(*) as total_like FROM event_like l JOIN user u ON 
         l.id_liker = u.id WHERE l.idQuestion = ` + req.params.idQuest;
@@ -312,6 +313,7 @@ var controller = {
            })
          })
      },
+  
     getEventStatusByQuestionID : (req, res) => {
         let idQuest = req.params.idQuest
         let sql = `SELECT e.status FROM event e JOIN event_question eq ON e.idEvent = eq.idEvent WHERE idQuestion = ` + idQuest;
@@ -332,7 +334,7 @@ var controller = {
     },
     getQuestionByID : (req, res) => {
         let idQuest = req.params.idQuest
-        let sql = `SELECT * FROM event_question WHERE idQuestion = ` + idQuest
+        let sql = `SELECT * FROM event_question WHERE idQuestion = ` + idQuest;
 
         query(con, sql)
         .then(data => {
@@ -371,7 +373,31 @@ var controller = {
                     message: err
                 })
             })
-    }
+    },
+     changeInforAccount2: (req, res) => {
+       let id = req.body.id;
+        let username = req.body.username;
+        let email = req.body.email;
+        let password = req.body.password;
+        let isAdmin = req.body.isAdmin;
+        let isTeacher = req.body.isTeacher;
+       
+         let sql = "update user set username = \"" + username + "\", email = \"" + email + "\", password = \"" + password + "\", isAdmin  = \"" + isAdmin + "\", isTeacher= \"" + isTeacher + "\" where id = " 
+         + id;
+         console.log(sql);
+          query(con, sql)
+            .then(data => {
+              res.send({
+                success: true,
+                message: "update successfully!"
+              })
+            }).catch(err => {
+              res.send({
+                success: false,
+                message: err
+              })
+            })
+     },
     // getAllLikesOfAllComments : (req, res) => {
     //     let sql = `SELECT idComment, COUNT(id_comment_liker) as total_like FROM event_comment_like ecl
     //     JOIN event_question eq ON ecl.idQuestion = eq.idQuestion WHERE idQuestion = ` + req.params.idQuest + 

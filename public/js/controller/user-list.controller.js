@@ -9,6 +9,22 @@ angular.module('QASystem')
       isAdmin: 0,
       isStudent: 0
     };
+    // $scope.updatedUser = {
+    //   username: "huy",
+    //   password: "",
+    //   email: "",
+    //   isTeacher: 0,
+    //   isAdmin: 0,
+    //   isStudent: 0
+    // }
+    $scope.setUpdatedUser = function (id) { 
+      $scope.userList.forEach(user => {
+        if (user.id == id) {
+          $scope.updatedUser = user;
+          console.log("herere");
+        }
+      });
+    }
     $scope.addAUser = function () {
       //console.log(idEvent);
       let a = {
@@ -38,4 +54,20 @@ angular.module('QASystem')
       }, function (err) {
         console.log(err);
       })
+    $scope.updateUser = function () {
+      let a = {
+        id: $scope.updatedUser['id'],
+        username: $scope.updatedUser['username'],
+        password: $scope.updatedUser['password'],
+        email: $scope.updatedUser['email'],
+        isTeacher: $scope.updatedUser['isTeacher'] ? 1 : 0,
+        isAdmin: $scope.updatedUser['isAdmin'] ? 1 : 0,
+      }
+       $http.post('/accounts/detail/change', a)
+         .then(function successCallback(data) {
+           console.log(data);
+         }, function (err) {
+           console.log(err);
+         })
+    }
   })

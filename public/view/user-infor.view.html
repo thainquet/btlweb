@@ -14,7 +14,7 @@
         <span class="infor-2">
           <i class="fa fa-graduation-cap">
           </i>
-          Chức vụ: {{role(user.isAdmin, user.isTeacher)}} 
+          Chức vụ: {{role(user.isAdmin, user.isTeacher)}}
         </span>
         <span class="infor-2">
           <i class="fa fa-question-circle-o fa-lg">
@@ -22,7 +22,49 @@
           Tổng số câu hỏi: {{user.question_count}}
         </span>
       </div>
-      <button type="button" class="btn btn-success">Cập nhật thông tin</button>
+      <button type="button" class="btn btn-success" data-toggle="modal" data-target="#update-user" ng-click="setUpdatedUser(user.id)">Cập
+        nhật thông tin</button>
+    </div>
+  </div>
+  <div class="modal fade" id="update-user" tabindex="-2" role="dialog" aria-labelledby="editUserInfor" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updateInforTitle">Tạo tài khoản</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <div class="form-group">
+              <label for="username" class="col-form-label">Tên đăng nhập</label>
+              <input type="text" class="form-control" id="username" ng-model="updatedUser['username']" ng-value="updatedUser['username']"
+                required>
+            </div>
+            <div class="form-group">
+              <label for="fullname" class="col-form-label">Password</label>
+              <input type="text" class="form-control" id="pasword" ng-model="updatedUser['password']" ng-value="updatedUser['password']"
+                required>
+            </div>
+            <div class="form-group">
+              <label for="e-mail" class="col-form-label">Email</label>
+              <input type="email" class="form-control" id="email" ng-model="updatedUser['email']" ng-value="updatedUser['email']"
+                required>
+            </div>
+            <div class="form-group">
+              <label for="e-mail">Chức vụ</label><br>
+              <input type="checkbox" ng-model="updatedUser['isAdmin']"> Admin<br>
+              <input type="checkbox" ng-model="updatedUser['isTeacher']"> Teacher<br>
+              <input type="checkbox" ng-model="updatedUser['isStudent']"> Student<br>
+            </div>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+          <button type="button" class="btn btn-success" ng-click="updateUser()" data-dismiss="modal">Cập nhật</button>
+        </div>
+      </div>
     </div>
   </div>
 </div>

@@ -53,5 +53,6 @@ angular.module('QASystem')
            return true;
         }
         $scope.name = user.username;
+        $scope.id = $window.sessionStorage['idUser'];
     } 
 }]);

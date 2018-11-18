@@ -1,0 +1,32 @@
+<page-header></page-header>
+<br><br>
+<div class="container-fluid content-page__main mt-0">
+  <div class="row">
+    <div class="col-12 d-flex container__header">
+      Danh sách câu hỏi
+    </div>
+  </div>
+  <div class="row" ng-repeat="question in questionList">
+    <div class="col-12 col-card">
+      <div class="media border d-flex align-items-center p-2">
+        <div class="ml-2 p-2 bg-primary d-flex flex-column align-items-center">
+          <h4 class="text-white">{{question['like_count']}}</h4>
+          <span class="text-white">Lượt thích</span>
+        </div>
+        <div class="ml-2 p-2 bg-danger d-flex flex-column align-items-center">
+          <h4 class="text-white">{{question['answer_count']}}</h4>
+          <span class="text-white">Trả lời</span>
+        </div>
+        <a href="#/question/{{question.idQuestion}}" class="media-body ml-2 d-flex flex-column justify-content-around">
+          <span class="infor-1 redtab">{{question.content_question}}</span>
+          <a href="#" class="time-news linkNormal">Đăng bởi: {{question['username']}}</a>
+        </a>
+      </div>
+      <div ng-if="isAdmin()">
+        <button type="button" class="btn btn-danger" ng-click="deleteQuestion(session.idEvent, question.idQuestion)">delete
+          question</button>
+      </div>
+    </div>
+  </div>
+</div>
+<page-footer></page-footer>

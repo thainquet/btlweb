@@ -14,7 +14,7 @@ router.post('/register', auth.newAccount)
 
 router.get('/accounts/detail/:id', auth.checkInfoAccout)
 
-router.put('/accounts/detail/:id/change',auth.changeInfoAccount)
+router.post('/accounts/detail/change',controller.changeInforAccount2)
 
 router.get('/accounts/:id/myquestions', controller.getQuestionByUser)
 
@@ -55,6 +55,6 @@ router.get('/event/questions/:idQuest', controller.getQuestionByID)
 
 router.post('/events/newEvents', controller.createNewEvent)
 
-router.post('/user/newUser', controller.createNewUser)
+//router.post('/user/newUser', controller.createNewUser)
 
 module.exports = router;

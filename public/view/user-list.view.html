@@ -27,13 +27,13 @@
             <label for="e-mail">Chức vụ</label><br>
             <input type="checkbox" ng-model="newUser['isAdmin']"> Admin<br>
             <input type="checkbox" ng-model="newUser['isTeacher']"> Teacher<br>
-            <input type="checkbox" ng-model="newUser['isStudent']">Student<br>
+            <input type="checkbox" ng-model="newUser['isStudent']"> Student<br>
           </div>
         </form>
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-        <input type="button"  class="btn btn-success" ng-click="addAUser()" data-dismiss="modal">
+        <button type="button"  class="btn btn-success" ng-click="addAUser()" data-dismiss="modal">Thêm</button>
       </div>
     </div>
   </div>
@@ -47,10 +47,12 @@
   </div>
   <div class="row">
     <div class="col-12 d-flex container__header">
-      Danh sách người sử dụng
+      Danh sách người dùng
     </div>
   </div>
   <user-list>
   </user-list>
 </div>
+
+
 <page-footer></page-footer>
