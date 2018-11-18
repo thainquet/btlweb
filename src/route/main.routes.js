@@ -52,4 +52,10 @@ router.get('/events/questions/:idQuest/status', controller.getEventStatusByQuest
 
 router.get('/event/questions/:idQuest', controller.getQuestionByID)
 
+router.get('/event/newEvent')
+
+// router.get('/event/questions/:idQuest/comments/getLikes/getAllLikesOfAllComments', controller.getAllLikesOfAllComments)
+
+// router.post('/events/comments/getLikes/:idComment/like', controller.pressLikeByCommentId)
+
 module.exports = router;

@@ -21,7 +21,7 @@ angular.module('QASystem')
                     $window.sessionStorage['user'] = JSON.stringify(data.data.data);
                     $window.sessionStorage['isAdmin'] = JSON.stringify(data.data.data.isAdmin);
                     $window.sessionStorage['isTeacher'] = JSON.stringify(data.data.data.isTeacher);
-                    //console.log(data.data.data.isAdmin);
+                    //console.log(data.data.data.id);
                 } else {
                     alert('username or password is incorrect');
                 }

@@ -35,10 +35,10 @@
               {{comment.commentor}} : {{comment.contentComment}}
             </div>
             
-            <div class="card-footer d-flex text-primary">
+            <!-- <div class="card-footer d-flex text-primary" ng-repeat="likes in cmtLike">
               <div class="emotion">
-                0
-                <a href="#">
+                {{likes.total_like}}
+                <a ng-click="addCommentLike(comment.idComment)">
                   <span class="text-primary">
                     <i class="fa fa-thumbs-o-up"></i>
                   </span>
@@ -46,13 +46,13 @@
               </div>
               <div class="emotion">
                 0
-                <a href="#">
+                <a href="">
                   <span class="text-primary">
                     <i class="fa fa-thumbs-o-down"></i>
                   </span>
                 </a>
               </div>
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
@@ -67,4 +67,5 @@
       </div>
     </div>
   </div>
+  <button ng-click="submit()">abc</button>
 </div>

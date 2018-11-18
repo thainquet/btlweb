@@ -38,7 +38,7 @@
 // }])
 
 angular.module('QASystem')
-.controller('activatingSessionCtrl', function($scope, $http, $window) {
+.controller('activatingSessionCtrl', function($scope, $http, $window, $timeout) {
     $scope.listEvents = [];
     $scope.listActivingEvents = [];
     $scope.showEvents = true;
@@ -56,7 +56,7 @@ angular.module('QASystem')
       return true;
     }
 
-    // Cai nay tra ve tat ca cac event da dong trong bang event
+    // Cai nay tra ve tat ca cac event dang hoat dong trong bang event
     $http.get('/events')
     .then(function successCallback(data) {
         $scope.listEvents = data.data.data;
@@ -103,20 +103,31 @@ angular.module('QASystem')
 
     // Tao 1 cau hoi moi cho event
     let user = JSON.parse($window.sessionStorage['user']);
-    console.log(user);
-    
-    $scope.createNewQuestion = function(idEvent) {
-        //console.log(idEvent);
-        let a = {
-            id_user : user.id,
-            content: 'nhffbdvvdv'
-        }
-        $http.post('/events/' + idEvent + '/questions/newQuestion', a)
+    //console.log(user.id);
+    $scope.newQuest = {
+        id_user : user.id,
+        content : ""
+    }
+
+    createNewQuestion = function(idEvent) {
+        $http.post('/events/' + idEvent + '/questions/newQuestion', $scope.newQuest)
         .then(function successCallback(data) {
-          console.log(data);
-        }, function(err) {
-          console.log(err);
-        })
+            // $timeout(function() {
+            //     $scope.getQuestions(idEvent);
+            //     }, function errCallback(err) {
+            //         console.log(err);
+            //     })  
+                console.log(data.data);
+                // console.log(idEvent);
+                //$scope.comments.push(data.data.content);
+                //console.log($scope.comments);
+            })
+        }, function errCallback(err) {
+            console.log(err);
+    }
+
+    $scope.onCreateNewQuest = function(idEvent) {
+        createNewQuestion(idEvent);
     }
 
     // Xoa 1 cau hoi cua 1 Event
