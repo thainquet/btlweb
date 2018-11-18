@@ -86,8 +86,13 @@ var controller = {
     },
     getQuestionsOfEvent: (req, res) => {
         try {
-            let sql = `SELECT idQuestion, username , contentQuest as content_question FROM event_question q
-             JOIN event e ON q.idEvent = e.idEvent JOIN user u ON q.id_user = u.id WHERE q.idEvent =` + req.params.idEvent;
+// <<<<<<< HEAD
+//             let sql = `SELECT idQuestion, username , contentQuest as content_question FROM event_question q
+//              JOIN event e ON q.idEvent = e.idEvent JOIN user u ON q.id_user = u.id WHERE q.idEvent =` + req.params.idEvent;
+// =======
+            let sql = `SELECT q.idQuestion, username , contentQuest as content_question, answer_count, 
+            name as asked_at, count(el.idQuestion) as like_count FROM event_question q JOIN event e ON q.idEvent = e.idEvent JOIN
+            user u ON q.id_user = u.id left join event_like el on el.idQuestion = q.idQuestion WHERE q.idEvent = ` + req.params.idEvent + ` group by q.idQuestion`;
             //let i = req.params.idEvent;
             // console.log(req.params.idEvent);
             query(con, sql)
@@ -107,24 +112,24 @@ var controller = {
         let idEvent = req.params.idEvent;
         let content = req.body.content;
         let id_user = req.body.id_user;
-        let sql = `INSERT INTO event_question (idEvent, contentQuest, id_user) VALUES (` + idEvent + `,"` + content + `",` + id_user + `)`
-        //console.log(sql);
+        let sql = `INSERT INTO event_question (idEvent, contentQuest, id_user, answer_count) VALUES (` + idEvent + `,"` + content + `",` + id_user + `", 0` + `)`
+        // console.log(sql);
         // console.log(req.body);
         // console.log(id_user);
         console.log(idEvent);
 
-        query(con, sql)
-            .then(() => {
-                res.send({
-                    success: true,
-                    message: "add new question successfully!"
-                })
-            }).catch(err => {
-                res.send({
-                    success: false,
-                    message: err
-                })
-            })
+        // query(con, sql)
+        //     .then(() => {
+        //         res.send({
+        //             success: true,
+        //             message: "add new question successfully!"
+        //         })
+        //     }).catch(err => {
+        //         res.send({
+        //             success: false,
+        //             message: err
+        //         })
+        //     })
     },
     deleteQuestionById: (req, res) => {
         let idQuest = req.params.idQuest;
@@ -163,6 +168,22 @@ var controller = {
             })
         //console.log(sql)
     },
+    getAllUser: (req, res) => {
+      let sql = `select u.id, u.username, u.email, u.isAdmin, u.isTeacher, count(eq.idQuestion) as question_count from user u
+      left join event_question eq on eq.id_user = u.id group by u.id;`;
+      query(con, sql)
+        .then(data => {
+          res.send({
+            success: true,
+            data: data
+          })
+        }).catch(err => {
+          res.send({
+            success: false,
+            message: err
+          })
+        })
+    },
     getAllQuest : (req, res) => {
         let sql = `SELECT q.idQuestion, username , contentQuest as content_question, answer_count,
          name as asked_at, count(el.idQuestion) as like_count FROM event_question q JOIN event e ON q.idEvent = e.idEvent JOIN 
@@ -197,11 +218,11 @@ var controller = {
         })
     },
     pressLikeByQuestionId : (req, res) => {
-        let id_liker = req.body.id_user
+        let id_user = req.body.id_user
         let idQuest = req.params.idQuest
         // console.log(id_liker);
         let sql = `INSERT INTO event_like (idQuestion, id_liker) 
-        VALUES ('`+ idQuest+ `', '`+id_liker+`')`
+        VALUES ('`+ idQuest+ `', '`+id_user+`')`
         query(con,sql)
         .then( data => {
             res.send({
@@ -271,10 +292,36 @@ var controller = {
             })
         })
     },
+     createNewUser: (req, res) => {
+       //let id = req.body.id;
+       let username = req.body.username;
+       let email = req.body.email;
+       let password = req.body.password;
+       let isAdmin = req.body.isAdmin;
+       let isTeacher = req.body.isTeacher;
+       //let id_user = req.body.id_user;
+       let sql = `INSERT INTO user(username, password, email, isAdmin, isTeacher) VALUES ("` + username + `","` + password +`",
+       "` + email +`", "` + isAdmin +`","` + isTeacher + `")`;
+
+       // console.log(sql);
+       query(con, sql)
+         .then(() => {
+           res.send({
+             content: content,
+             success: true,
+             message: "add new user successfully!"
+           })
+         }).catch(err => {
+           res.send({
+             success: false,
+             message: err
+           })
+         })
+     },
     getEventStatusByQuestionID : (req, res) => {
         let idQuest = req.params.idQuest
         let sql = `SELECT e.status FROM event e JOIN event_question eq ON e.idEvent = eq.idEvent WHERE idQuestion = ` + idQuest;
-
+        
         //console.log(sql);
         query(con, sql)
         .then(data => {
@@ -305,43 +352,48 @@ var controller = {
                 message: err
             })
         })
-    }
-    // getAllLikesOfAllComments : (req, res) => {
-    //     let sql = `SELECT idComment, COUNT(id_comment_liker) as total_like FROM event_comment_like ecl
-    //     JOIN event_question eq ON ecl.idQuestion = eq.idQuestion WHERE idQuestion = ` + req.params.idQuest + 
-    //     ` GROUP BY idComment`;
-    //     query(con,sql)
-    //     .then( data => {
-    //         res.send({
-    //             success: true,
-    //             data: data
-    //         })
-    //     }).catch(err => {
-    //         res.send({
-    //             success: false,
-    //             message: err
-    //         })
-    //     })
-    // },
-    // pressLikeByCommentId : (req, res) => {
-    //     let id_liker = req.body.id_user
-    //     let idComment = req.params.idComment
-    //     // console.log(id_liker);
-    //     let sql = `INSERT INTO event_comment_like (idComment, id_comment_liker) 
-    //     VALUES ('`+ idComment+ `', '`+id_liker+`')`
-    //     query(con,sql)
-    //     .then( data => {
-    //         res.send({
-    //             success: true,
-    //             message: "Liked!"
-    //         })
-    //     }).catch(err => {
-    //         res.send({
-    //             success: false,
-    //             message: err
-    //         })
-    //     })
-    // },
+    },
+    createNewEvent : (req, res) => {
+        //let idEvent = req.params.idEvent;
+        let content = req.body.content;
+        let name = req.body.name;
+        let id_user = req.body.id_user;
+        let type = req.body.type;
+        let status = req.body.status;
+        let sql = `INSERT INTO event (content, id_creator, name, type, status) VALUES ("` 
+        + content + `", "` + id_user + `", "` + name + `", "` + type + `", "` + status + `")`
+        // console.log(sql);
+        //console.log(req.body);
+
+        query(con, sql)
+            .then(data => {
+                res.send({
+                    success: true,
+                    message: "add new event successfully!"
+                })
+            }).catch(err => {
+                res.send({
+                    success: false,
+                    message: err
+                })
+            })
+    },
+    deleteEventById: (req, res) => {
+        let idEvent = req.params.idEvent;
+        let sql = `DELETE FROM event WHERE idEvent = ` + idEvent;
+        query(con, sql)
+            .then(() => {
+                res.send({
+                    success: true,
+                    message: "delete successfully!"
+                })
+            }).catch(err => {
+                res.send({
+                    success: false,
+                    message: err
+                })
+            })
+    },
 }
 
 

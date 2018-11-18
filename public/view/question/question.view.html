@@ -10,11 +10,14 @@
           <h4 class="text-white">{{question['answer_count']}}</h4>
           <span class="text-white">Trả lời</span>
         </div>
-        <a href="#/all/question/{{question.idQuestion}}" class="media-body ml-2 d-flex flex-column justify-content-around">
-          <span class="infor-1 redtab">{{question['content_question']}}</span>
-          <span class="infor-2">Chưa có câu trả lời</span>
+        <a href="#/question/{{question.idQuestion}}" class="media-body ml-2 d-flex flex-column justify-content-around">
+          <span class="infor-1 redtab">{{question.content_question}}</span>
           <a href="#" class="time-news linkNormal">Đăng bởi: {{question['username']}}</a>
         </a>
+      </div>
+      <div ng-if="isAdmin()">
+        <button type="button" class="btn btn-danger" ng-click="deleteQuestion(session.idEvent, question.idQuestion)">delete
+          question</button>
       </div>
     </div>
   </div>

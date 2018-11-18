@@ -1,38 +1,76 @@
-<div class="row">
-  <div class="col-12 col-card">
-    <div class="card">
-      <div class="card-header font-weight-bold bg-danger text-white">
-        Nội dung câu hỏi
+<page-header></page-header>
+  <div class="modal fade" id="edit-user-infor" tabindex="-1" role="dialog" aria-labelledby="editUserInfor" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="updateInforTitle">Cập nhật thông tin</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
       </div>
-      <div class="card-body">
-        {{question.contentQuest}}
-      </div>
-      <div class="card-footer text-primary d-flex">
-        <div class="emotion">
-          {{like}}
-          <a ng-click="addLike()">
-            <span class="text-primary">
-              <i class="fa fa-thumbs-o-up"></i>
-            </span>
-          </a>
-        </div>
-        <div class="emotion">
-          {{dislike}}
-          <a ng-click="unLike()">
-            <span class="text-primary">
-              <i class="fa fa-thumbs-o-down"></i>
-            </span>
-          </a>
-        </div>
-      </div>
-      <div class="col-12 col-card">
-        <div class="card">
-          <div class="card-header font-weight-bold bg-success text-white">
-            Trả lời
+      <div class="modal-body">
+        <form>
+          <div class="form-group">
+            <label for="username" class="col-form-label">Tên đăng nhập</label>
+            <input type="text" class="form-control" id="username">
           </div>
-          <div class="card-body" ng-repeat="comment in comments">
-            <div>
-              {{comment.commentor}} : {{comment.contentComment}}
+          <div class="form-group">
+            <label for="fullname" class="col-form-label">Họ và tên</label>
+            <input type="text" class="form-control" id="username">
+          </div>
+          <div class="form-group">
+            <label for="e-mail" class="col-form-label">Email</label>
+            <input type="email" class="form-control" id="email">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
+        <button type="button" class="btn btn-primary">Cập nhật</button>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
+<br>
+<div class="container-fluid content-page__main mt-0">
+  <br>
+  <div class="row">
+    <div class="col-12">
+      <button type="button" class="btn btn-primary" onclick="window.history.back();">&larr; Back</button>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12 col-card">
+      <div class="card">
+        <div class="card-header font-weight-bold bg-danger text-white">
+          Nội dung câu hỏi
+        </div>
+        <div class="card-body">
+          {{question.contentQuest}}
+        </div>
+        <div class="card-footer text-primary d-flex">
+          <div class="emotion">
+            {{like}}
+            <a ng-click="addLike()">
+              <span class="text-primary">
+                <i class="fa fa-thumbs-o-up"></i>
+              </span>
+            </a>
+          </div>
+          <div class="emotion">
+            {{dislike}}
+            <a ng-click="unLike()">
+              <span class="text-primary">
+                <i class="fa fa-thumbs-o-down"></i>
+              </span>
+            </a>
+          </div>
+        </div>
+        <div class="col-12 col-card">
+          <div class="card">
+            <div class="card-header font-weight-bold bg-success text-white">
+              Trả lời
             </div>
             
             <!-- <div class="card-footer d-flex text-primary" ng-repeat="likes in cmtLike">
@@ -50,22 +88,45 @@
                   <span class="text-primary">
                     <i class="fa fa-thumbs-o-down"></i>
                   </span>
-                </a>
+                </a> -->
+            <div class="card-body" ng-repeat="comment in comments">
+              <div>
+                {{comment.commentor}} : {{comment.contentComment}}
               </div>
-            </div> -->
+
+              <div class="card-footer d-flex text-primary">
+                <div class="emotion">
+                  0
+                  <a href="#">
+                    <span class="text-primary">
+                      <i class="fa fa-thumbs-o-up"></i>
+                    </span>
+                  </a>
+                </div>
+                <div class="emotion">
+                  0
+                  <a href="#">
+                    <span class="text-primary">
+                      <i class="fa fa-thumbs-o-down"></i>
+                    </span>
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-      <div>
-        <div class="col-12 col-card" ng-show="isActivingSession()">
-          <div class="card">
-            <input type="text" class="card-body" placeholder="Type to comment" ng-model="cmt.content">
+        <div>
+          <div class="col-12 col-card" ng-show="isActivingSession()">
+            <div class="card">
+              <input type="text" class="card-body" placeholder="Type to comment" ng-model="cmt.content">
+            </div>
+            <br>
+            <button type="submit" class="btn btn-outline-primary" ng-click="onSubmit()">Comment</button>
           </div>
-          <button ng-click="onSubmit()">Comment</button>
-        </div> 
-        <div ng-hide="isActivingSession()"></div>    
+          <div ng-hide="isActivingSession()"></div>
+        </div>
       </div>
     </div>
   </div>
-  <button ng-click="submit()">abc</button>
 </div>
+<page-footer></page-footer>

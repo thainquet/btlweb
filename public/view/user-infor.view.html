@@ -1,35 +1,28 @@
-
-  
-      <div class="media border d-flex align-items-center p-2">
-        <div>
-          <img src="../img/user.png" class="img-responsive" />
-        </div>
-        <div class="media-body ml-2 d-flex flex-column justify-content-around">
-          <span class="infor-1 redtab">
-            <i class="class=" fa fa-user"">
-            </i>
-            Tên Người dùng
-          </span>
-          <br>
-          <span class="infor-2">
-            <i class="fa fa-graduation-cap">
-            </i>
-            Chức vụ
-          </span>
-          <span class="infor-2">
-            <i class="fa fa-question-circle-o fa-lg">
-            </i>
-            Tổng số câu hỏi
-          </span>
-          <span class="infor-2">
-            <i class="fa fa-hourglass-2 fa-lg">
-            </i>
-            Số câu hỏi chưa được trả lời:
-          </span>
-          <span class="time-news">
-            <i class="fa fa-history">
-            </i>
-            Lần cuối đặt câu hỏi:
-          </span> 
-        </div>
+<div class="row pointer" ng-repeat="user in userList">
+  <div class="col-12 col-card">
+    <div class="media border d-flex align-items-center p-2">
+      <div>
+        <img src="../img/user.png" class="img-responsive" />
       </div>
+      <div class="media-body ml-2 d-flex flex-column justify-content-around">
+        <span class="infor-1 redtab">
+          <i class="class=" fa fa-user"">
+          </i>
+          {{user.username}}
+        </span>
+        <br>
+        <span class="infor-2">
+          <i class="fa fa-graduation-cap">
+          </i>
+          Chức vụ: {{role(user.isAdmin, user.isTeacher)}} 
+        </span>
+        <span class="infor-2">
+          <i class="fa fa-question-circle-o fa-lg">
+          </i>
+          Tổng số câu hỏi: {{user.question_count}}
+        </span>
+      </div>
+      <button type="button" class="btn btn-success">Cập nhật thông tin</button>
+    </div>
+  </div>
+</div>

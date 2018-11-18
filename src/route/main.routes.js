@@ -23,12 +23,14 @@ router.get('/accounts/:id/myquestions', controller.getQuestionByUser)
 router.get('/events', controller.getAllEvent)
 
 router.get('/events/:idEvent', controller.getEventbyID)
-
+router.get('/events/users/getAll', controller.getAllUser)
 router.get('/events/questions/getAll', controller.getAllQuest)
 
 router.put('/events/:idEvent/open', controller.openEventById)
 
 router.put('/events/:idEvent/close', controller.closeEventById)
+
+router.delete('/events/:idEvent/delete', controller.deleteEventById)
 
 router.get('/events/:idEvent/questions', controller.getQuestionsOfEvent)
 
@@ -52,10 +54,15 @@ router.get('/events/questions/:idQuest/status', controller.getEventStatusByQuest
 
 router.get('/event/questions/:idQuest', controller.getQuestionByID)
 
-router.get('/event/newEvent')
+// <<<<<<< HEAD
+// router.get('/event/newEvent')
 
-// router.get('/event/questions/:idQuest/comments/getLikes/getAllLikesOfAllComments', controller.getAllLikesOfAllComments)
+// // router.get('/event/questions/:idQuest/comments/getLikes/getAllLikesOfAllComments', controller.getAllLikesOfAllComments)
 
-// router.post('/events/comments/getLikes/:idComment/like', controller.pressLikeByCommentId)
+// // router.post('/events/comments/getLikes/:idComment/like', controller.pressLikeByCommentId)
+// =======
+router.post('/events/newEvents', controller.createNewEvent)
+
+router.post('/user/newUser', controller.createNewUser)
 
 module.exports = router;

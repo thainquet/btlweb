@@ -16,25 +16,30 @@
       </div>
       <button type="button" class="btn btn-sm btn-success" ng-if="isAdmin()" ng-click="openSession(session.idEvent)">Mở</button>
       <button type="button" class="btn btn-sm btn-danger" ng-if="isAdmin()" ng-click="openSession(session.idEvent)">Xóa</button>
-
     </div>
   </div>
   <div ng-show="showQuestions">
+    <button type="button" class="btn btn-light text-primary" ng-click="back()">Back</button>
+    <session-detail></session-detail>
     <div class="row" ng-repeat="question in listQuestions">
       <div class="col-12 col-card">
         <div class="media border d-flex align-items-center p-2">
           <div class="ml-2 p-2 bg-primary d-flex flex-column align-items-center">
-            <h4 class="text-white">6</h4>
+            <h4 class="text-white">{{question.like_count}}</h4>
             <span class="text-white">Lượt thích</span>
           </div>
           <div class="ml-2 p-2 bg-danger d-flex flex-column align-items-center">
-            <h4 class="text-white">0</h4>
+            <h4 class="text-white">{{question.answer_count}}</h4>
             <span class="text-white">Trả lời</span>
           </div>
           <a href="#/question/{{question.idQuestion}}" class="media-body ml-2 d-flex flex-column justify-content-around">
             <span class="infor-1 redtab">{{question.content_question}}</span>
-            <a href="#" class="time-news linkNormal">Đăng bởi:  {{question['username']}}</a>
+            <a href="#" class="time-news linkNormal">Đăng bởi: {{question['username']}}</a>
           </a>
+        </div>
+        <div ng-if="isAdmin()">
+          <button type="button" class="btn btn-danger" ng-click="deleteQuestion(session.idEvent, question.idQuestion)">delete
+            question</button>
         </div>
       </div>
     </div>

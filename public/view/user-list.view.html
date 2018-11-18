@@ -1,0 +1,53 @@
+<page-header></page-header>
+<br><br>
+<div class="container-fluid content-page__main mt-0">
+  <div class="row">
+    <div class="col-12 d-flex container__header">
+      Danh sách người sử dụng
+    </div>
+  </div>
+  <user-list>
+  </user-list>
+  <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+      Tạo người dùng mới
+    </button>
+    <div role="alert" ng-show="formError" class="alert alert-danger">{{ formError }}</div>
+    <div class="modal" id="myModal">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h4 class="modal-title">Tạo người dùng mới</h4>
+            <button type="button" class="close" data-dismiss="modal">&times;</button>
+          </div>
+          <div class="modal-body">
+              <form>
+                  <div class="form-group">
+                    <label for="username" class="col-form-label">Tên đăng nhập</label>
+                    <input type="text" class="form-control" ng-model="newUser.username" required>
+                  </div>
+                  <div class="form-group">
+                      <label for="fullname" class="col-form-label">Email</label>
+                      <input type="text" class="form-control" ng-model="newUser.email" required>
+                    </div>
+                  <div class="form-group">
+                    <label for="fullname" class="col-form-label">Mật khẩu</label>
+                    <input type="pasword" class="form-control" ng-model="newUser.password" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="fullname" class="col-form-label">Là giáo viên?</label>
+                    <input type="text" class="form-control" placeholder="Gõ 1 hoặc 0" ng-model="newUser.isTeacher" required>
+                  </div>
+                  <div class="form-group">
+                    <label for="fullname" class="col-form-label">Là admin?</label>
+                    <input type="text" class="form-control" placeholder="Gõ 1 hoặc 0" ng-model="newUser.isAdmin" required>
+                  </div>
+                </form>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="onCreateNewUser()">Tạo</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+<page-footer></page-footer>

@@ -16,6 +16,10 @@ angular.module('QASystem', ['ngRoute'])
     templateUrl: 'view/question/question-content.view.html',
     controller: 'questionContentCtrl'
   });
-
+  
+  $routeProvider.when('/user/list', {
+    templateUrl: 'view/user-list.view.html',
+    controller: 'userListCtrl'
+  })
 }])
 

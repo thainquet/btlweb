@@ -13,43 +13,71 @@
         </div>
       </div>
       <button type="button" class="btn btn-sm btn-warning" ng-if="isAdmin()" ng-click="closeEvent(session.idEvent)">Đóng</button>
-      <!-- <button type="button" class="btn btn-sm btn-primary" ng-click="createNewQuestion(session.idEvent)">Đặt câu hỏi</button> -->
-      <button type="button" class="btn btn-sm btn-danger" ng-if="isAdmin()" ng-click="openSession(session.idEvent)">Xóa</button>
+      <button type="button" class="btn btn-sm btn-warning" ng-if="isTeacher()" ng-click="closeEvent(session.idEvent)">Đóng</button>
+      <button type="button" class="btn btn-sm btn-primary" ng-click="onCreateNewQuestion(session.idEvent)">Đặt câu hỏi</button>
+      <button type="button" class="btn btn-sm btn-danger" ng-if="isAdmin()" ng-click="deleteEvent(session.idEvent)">Xóa</button>
+      <button type="button" class="btn btn-sm btn-danger" ng-if="isTeacher()" ng-click="deleteEvent(session.idEvent)">Xóa</button>
     </div>
   </div>
   <div ng-show="showQuestions">
-    <div class="row" ng-repeat="question in listQuestions">
-      <div class="col-12 col-card">
-        <div class="media border d-flex align-items-center p-2">
-          <div class="ml-2 p-2 bg-primary d-flex flex-column align-items-center">
-            <h4 class="text-white">6</h4>
-            <span class="text-white">Lượt thích</span>
-          </div>
-          <div class="ml-2 p-2 bg-danger d-flex flex-column align-items-center">
-            <h4 class="text-white">0</h4>
-            <span class="text-white">Trả lời</span>
-          </div>
-          <a href="#/question/{{question.idQuestion}}" class="media-body ml-2 d-flex flex-column justify-content-around">
-            <span class="infor-1 redtab">{{question.content_question}}</span>
-            <span class="infor-2">Chưa có câu trả lời</span>
-            <a href="#" class="time-news linkNormal">Đăng bởi: {{question['username']}}</a>
-          </a>
-          <div class="ml-2 bg-primary align-items-center">
-           <button type="button" class="btn btn-sm btn-danger" ng-if="isAdmin()" ng-click="deleteQuestion(session.idEvent, question.idQuestion)">Xóa</button>
-          </div>
-        </div>
-      </div>
-    </div>
+    <button type="button" class="btn btn-light text-primary" ng-click="back()">Back</button>
+
+    <session-detail></session-detail>
     <div>
       <div class="col-12 col-card">
         <div class="card">
           <input type="text" class="card-body" placeholder="Type to create question" ng-model="newQuest.content">
         </div>
         <br>
-        <button type="button" class="btn btn-sm btn-primary" ng-click="onCreateNewQuest(session.idEvent)">Đặt câu hỏi</button>
+        <button type="button" class="btn btn-sm btn-primary" ng-click="createNewQuestion(session.idEvent)">Đặt câu hỏi</button>
       </div>     
     </div>
+
+    <div class="row" ng-repeat="question in listQuestions">
+      <div class="col-12 col-card">
+        <div class="media border d-flex align-items-center p-2">
+          <div class="ml-2 p-2 bg-primary d-flex flex-column align-items-center">
+            <h4 class="text-white">{{question.like_count}}</h4>
+            <span class="text-white">Lượt thích</span>
+          </div>
+          <div class="ml-2 p-2 bg-danger d-flex flex-column align-items-center">
+            <h4 class="text-white">{{question.answer_count}}</h4>
+            <span class="text-white">Trả lời</span>
+          </div>
+          <a href="#/question/{{question.idQuestion}}" class="media-body ml-2 d-flex flex-column justify-content-around">
+            <span class="infor-1 redtab">{{question.content_question}}</span>
+            <a href="#" class="time-news linkNormal">Đăng bởi: {{question['username']}}</a>
+          </a>
+          <div class="ml-2 bg-primary align-items-center">
+           <button type="button" class="btn btn-sm btn-danger" ng-if="isAdmin()" ng-click="deleteQuestion(session.idEvent, question.idQuestion)">Xóa</button>
+          </div>
+        </div>
+        <div ng-if="isAdmin()">
+          <button type="button" class="btn btn-danger" ng-click="deleteQuestion(session.idEvent, question.idQuestion)">delete
+            question</button>
+        </div>
+      </div>
+    </div>
   </div>
+  <div ng-if="isTeacher()">
+    <div class="col-12 col-card">
+      <div class="card">
+          <label>Tên hội thảo: </label>
+          <input type="text" class="card-body" ng-model="newEvent.name">
+        </div>
+      <div class="card">
+        <label>Nội dung: </label>
+        <input type="text" class="card-body" ng-model="newEvent.content">
+      </div>
+      <div class="card">
+        <label>Loại hội thảo: </label>
+        <input type="text" class="card-body" ng-model="newEvent.type">
+      </div>
+      <br>
+      <button type="button" class="btn btn-sm btn-primary" ng-click="onCreateNewEvent()">Tạo hội thảo</button>
+    </div>     
+  </div>
+</div>
   <item-pagination></item-pagination>
 </div>
 </div>

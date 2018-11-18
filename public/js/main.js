@@ -10,7 +10,7 @@ function scrollFunction() {
 
 // When the user clicks on the button, scroll to the top of the document
 function topFunction() {
-  document.body.scrollTop = 0; // For Safari
+  document.body.scrollTop  = 0; // For Safari
   document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
 }
 
@@ -22,12 +22,8 @@ let showEvent = () => {
 }
 
 let logOut = ()=> {
-  window.location.assign('/')
+  window.sessionStorage.clear();
+  console.log("vao logout");
+  window.location.replace('/');
 }
 
-// angular.module('QASystem', ['ngRoute'])
-// .config('$routeProvider', function($routeProvider) {
-//   routeProvider.when('/home', {
-//     templateUrl: 'public/view/home.html'
-//   })
-// })
