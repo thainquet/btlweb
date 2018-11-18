@@ -11,12 +11,14 @@ const app = express();
 app.set('PORT', process.env.PORT || 7777);
 
 app.use(express.static(path.join(__dirname, '/public')));
-app.get('/', function(req, res) {
-    res.sendFile(path.join(__dirname, '/public/index.html'))
+app.get('/', function (req, res) {
+  res.sendFile(path.join(__dirname, '/public/index.html'))
 });
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({
+  extended: true
+}));
 // app.get('/', (req, res) => {
 //     res.sendFile(path.join(public, '/view/login.view.html'));
 // });

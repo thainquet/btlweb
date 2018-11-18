@@ -50,7 +50,7 @@ angular.module('QASystem')
         })
     }
 
-    // Ham tang like khi click vao nut like
+    // Ham tang like cua cau hoi khi click vao nut like
     $scope.addLike = function() { 
         $http.post('/events/questions/getLikes/' + idQuest + '/like', idUser)
         .then(function successCallback(data) {
@@ -63,7 +63,7 @@ angular.module('QASystem')
         })
     }
 
-    // Ham tang dislike khi click vao nut dislike
+    // Ham tang dislike cua cau hoi khi click vao nut dislike
    $scope.unLike = function() {
        $http.post('/events/questions/getLikes/' + idQuest + '/unlike', idUser)
        .then(function successCallback(data) {
@@ -124,6 +124,33 @@ angular.module('QASystem')
         $scope.cmt = {
             content : ""
         }
+    }
+
+    // $scope.cmtlike = [];
+
+    // Ham lay tat ca so like cua tat ca comment bang id cua cau hoi
+    // getAllLikeComment = function() {
+    //     $http.get('/event/questions/' + idQuest + '/comments/getLikes/getAllLikesOfAllComments')
+    //     .then(function successCallback(data) {
+    //         console.log(data.data.data);
+    //         $scope.cmtLike = data.data.data;
+    //     }, function(err) {
+    //         console.log(err);
+    //     })
+    // }
+
+    $scope.commentLike = 0;
+    $scope.addCommentLike = function(idComment) { 
+        $http.post('/events/comments/getLikes/' + idComment + '/like', idUser)
+        .then(function successCallback(data) {
+            //console.log(data.data);
+            if(data.data.success) {
+                $scope.commentLike += 1;
+            }
+            console.log($scope.commentLike);
+        }, function errCallback(err) {
+            console.log(err);
+        })
     }
 
 })

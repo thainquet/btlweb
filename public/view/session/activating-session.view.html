@@ -13,7 +13,7 @@
         </div>
       </div>
       <button type="button" class="btn btn-sm btn-warning" ng-if="isAdmin()" ng-click="closeEvent(session.idEvent)">Đóng</button>
-      <button type="button" class="btn btn-sm btn-primary" ng-click="createNewQuestion(session.idEvent)">Đặt câu hỏi</button>
+      <!-- <button type="button" class="btn btn-sm btn-primary" ng-click="createNewQuestion(session.idEvent)">Đặt câu hỏi</button> -->
       <button type="button" class="btn btn-sm btn-danger" ng-if="isAdmin()" ng-click="openSession(session.idEvent)">Xóa</button>
     </div>
   </div>
@@ -37,12 +37,24 @@
             <span class="infor-1 redtab">{{question.content_question}}</span>
             <a href="#" class="time-news linkNormal">Đăng bởi: {{question['username']}}</a>
           </a>
+          <div class="ml-2 bg-primary align-items-center">
+           <button type="button" class="btn btn-sm btn-danger" ng-if="isAdmin()" ng-click="deleteQuestion(session.idEvent, question.idQuestion)">Xóa</button>
+          </div>
         </div>
         <div ng-if="isAdmin()">
           <button type="button" class="btn btn-danger" ng-click="deleteQuestion(session.idEvent, question.idQuestion)">delete
             question</button>
         </div>
       </div>
+    </div>
+    <div>
+      <div class="col-12 col-card">
+        <div class="card">
+          <input type="text" class="card-body" placeholder="Type to create question" ng-model="newQuest.content">
+        </div>
+        <br>
+        <button type="button" class="btn btn-sm btn-primary" ng-click="onCreateNewQuest(session.idEvent)">Đặt câu hỏi</button>
+      </div>     
     </div>
   </div>
   <item-pagination></item-pagination>
