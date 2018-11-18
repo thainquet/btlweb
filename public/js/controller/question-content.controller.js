@@ -1,9 +1,9 @@
 angular.module('QASystem')
 .controller('questionContentCtrl', function($scope, $window, $routeParams, $http, $timeout) {
     let idQuest = $routeParams.idQuestion;
-    let user = JSON.parse($window.sessionStorage['user']);
+    let id_user = $window.sessionStorage['idUser'];
     let idUser = {
-        id_user: user.id
+        id_user: id_user
     };
     let eventStatus = 0;
     //$scope.isActivingSession = true;

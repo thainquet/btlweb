@@ -13,14 +13,25 @@
         </div>
       </div>
       <button type="button" class="btn btn-sm btn-warning" ng-if="isAdmin()" ng-click="closeEvent(session.idEvent)">Đóng</button>
-      <!-- <button type="button" class="btn btn-sm btn-primary" ng-click="createNewQuestion(session.idEvent)">Đặt câu hỏi</button> -->
-      <button type="button" class="btn btn-sm btn-danger" ng-if="isAdmin()" ng-click="openSession(session.idEvent)">Xóa</button>
+      <button type="button" class="btn btn-sm btn-warning" ng-if="isTeacher()" ng-click="closeEvent(session.idEvent)">Đóng</button>
+      <button type="button" class="btn btn-sm btn-primary" ng-click="onCreateNewQuestion(session.idEvent)">Đặt câu hỏi</button>
+      <button type="button" class="btn btn-sm btn-danger" ng-if="isAdmin()" ng-click="deleteEvent(session.idEvent)">Xóa</button>
+      <button type="button" class="btn btn-sm btn-danger" ng-if="isTeacher()" ng-click="deleteEvent(session.idEvent)">Xóa</button>
     </div>
   </div>
   <div ng-show="showQuestions">
     <button type="button" class="btn btn-light text-primary" ng-click="back()">Back</button>
 
     <session-detail></session-detail>
+    <div>
+      <div class="col-12 col-card">
+        <div class="card">
+          <input type="text" class="card-body" placeholder="Type to create question" ng-model="newQuest.content">
+        </div>
+        <br>
+        <button type="button" class="btn btn-sm btn-primary" ng-click="createNewQuestion(session.idEvent)">Đặt câu hỏi</button>
+      </div>     
+    </div>
 
     <div class="row" ng-repeat="question in listQuestions">
       <div class="col-12 col-card">
@@ -46,15 +57,6 @@
             question</button>
         </div>
       </div>
-    </div>
-    <div>
-      <div class="col-12 col-card">
-        <div class="card">
-          <input type="text" class="card-body" placeholder="Type to create question" ng-model="newQuest.content">
-        </div>
-        <br>
-        <button type="button" class="btn btn-sm btn-primary" ng-click="onCreateNewQuest(session.idEvent)">Đặt câu hỏi</button>
-      </div>     
     </div>
   </div>
   <div ng-if="isTeacher()">

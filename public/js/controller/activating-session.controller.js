@@ -43,6 +43,7 @@ angular.module('QASystem')
     $scope.listActivingEvents = [];
     $scope.showEvents = true;
     $scope.showQuestions = false;
+    let idUser = $window.sessionStorage['idUser'];
     $scope.isAdmin = function () {
       if ($window.sessionStorage['isAdmin'] == 1) return true;
       return false;
@@ -80,7 +81,7 @@ angular.module('QASystem')
         .then(function successCallback(data) {
           //  $scope.showEvents = false;
           //  $scope.showQuestions = true;
-          console.log("HUy");
+          // console.log("HUy");
           console.log(data);
           $scope.eventDetail = data.data.data[0];
         }, function (err) {
@@ -117,32 +118,36 @@ angular.module('QASystem')
     }
 
     // Tao 1 cau hoi moi cho event
-    let user = JSON.parse($window.sessionStorage['user']);
-    //console.log(user.id);
+    $scope.onCreateNewQuestion = function(idEvent) {
+      createNewQuestion(idEvent);
+    }
+
+    //let idUser = $window.sessionStorage['idUser'];
+    //console.log(user);
     $scope.newQuest = {
-        id_user : user.id,
-        content : ""
+      id_user: idUser,
+      content: ""
     }
 
-    createNewQuestion = function(idEvent) {
-        $http.post('/events/' + idEvent + '/questions/newQuestion', $scope.newQuest)
+    $scope.createNewQuestion = function (idEvent) {
+      //console.log(idEvent);
+      $http.post('/events/' + idEvent + '/questions/newQuestion', $scope.newQuest)
         .then(function successCallback(data) {
-            // $timeout(function() {
-            //     $scope.getQuestions(idEvent);
-            //     }, function errCallback(err) {
-            //         console.log(err);
-            //     })  
-                console.log(data.data);
-                // console.log(idEvent);
-                //$scope.comments.push(data.data.content);
-                //console.log($scope.comments);
-            })
-        }, function errCallback(err) {
-            console.log(err);
-    }
-
-    $scope.onCreateNewQuest = function(idEvent) {
-        createNewQuestion(idEvent);
+          $scope.getQuestions(idEvent);
+          // console.log(data);
+          // $http.get('/events/' + idEvent + '/questions')
+          // .then(function successCallback(data) {
+          //   $scope.showEvents = false;
+          //   $scope.showQuestions = true;
+          //   console.log(data.data.data);
+            //$scope.listQuestions = data.data.data;
+          // }, function (err) {
+          //   console.log(err);
+          // })
+          //$scope.getEventById(idEvent);
+        }, function (err) {
+          console.log(err);
+        })
     }
 
     // Xoa 1 cau hoi cua 1 Event
@@ -161,8 +166,25 @@ angular.module('QASystem')
         })
     }
 
+    // Xoa 1 Event
+    $scope.deleteEvent = function (idEvent) {
+      $http.delete('/events/'+ idEvent + '/delete')
+        .then(function successCallback(data) {
+          console.log(data);
+          for (let i = 0; i < $scope.listActivingEvents.length; i++) {
+            if ($scope.listActivingEvents[i].idEvent == idEvent) {
+              $scope.listActivingEvents.splice(i, 1);
+            }
+          }
+          alert("delete success");
+          window.onload;
+        }, function (err) {
+          console.log(err);
+        })
+    }
+
     // Tao 1 hoi thao moi
-    let idUser = $window.sessionStorage['idUser'];
+    
     $scope.newEvent = {
       content : "",
       id_user : idUser,

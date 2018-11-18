@@ -32,6 +32,8 @@ router.put('/events/:idEvent/open', controller.openEventById)
 
 router.put('/events/:idEvent/close', controller.closeEventById)
 
+router.delete('/events/:idEvent/delete', controller.deleteEventById)
+
 router.get('/events/:idEvent/questions', controller.getQuestionsOfEvent)
 
 router.post('/events/user/add', controller.createNewUser);
@@ -55,8 +57,15 @@ router.get('/events/questions/:idQuest/status', controller.getEventStatusByQuest
 
 router.get('/event/questions/:idQuest', controller.getQuestionByID)
 
+// <<<<<<< HEAD
+// router.get('/event/newEvent')
+
+// // router.get('/event/questions/:idQuest/comments/getLikes/getAllLikesOfAllComments', controller.getAllLikesOfAllComments)
+
+// // router.post('/events/comments/getLikes/:idComment/like', controller.pressLikeByCommentId)
+// =======
 router.post('/events/newEvents', controller.createNewEvent)
 
-//router.post('/user/newUser', controller.createNewUser)
+router.post('/user/newUser', controller.createNewUser)
 
 module.exports = router;
