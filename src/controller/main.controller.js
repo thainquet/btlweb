@@ -16,7 +16,6 @@ var controller = {
                         data: data
                     }
                     return metadata
-
                 })
                 .then(data => res.send(data))
         } catch (error) {
@@ -298,7 +297,7 @@ var controller = {
        //let id_user = req.body.id_user;
        let sql = `INSERT INTO user(username, password, email, isAdmin, isTeacher) VALUES ("` + username + `","`+ password +`","` + email +`", "` + isAdmin +`","` + isTeacher + `")`;
 
-       console.log(sql);
+       // console.log(sql);
        query(con, sql)
          .then(() => {
            res.send({
@@ -347,6 +346,31 @@ var controller = {
                 message: err
             })
         })
+    },
+    createNewEvent : (req, res) => {
+        //let idEvent = req.params.idEvent;
+        let content = req.body.content;
+        let name = req.body.name;
+        let id_user = req.body.id_user;
+        let type = req.body.type;
+        let status = req.body.status;
+        let sql = `INSERT INTO event (content, id_creator, name, type, status) VALUES ("` 
+        + content + `", "` + id_user + `", "` + name + `", "` + type + `", "` + status + `")`
+        // console.log(sql);
+        //console.log(req.body);
+
+        query(con, sql)
+            .then(data => {
+                res.send({
+                    success: true,
+                    message: "add new event successfully!"
+                })
+            }).catch(err => {
+                res.send({
+                    success: false,
+                    message: err
+                })
+            })
     }
     // getAllLikesOfAllComments : (req, res) => {
     //     let sql = `SELECT idComment, COUNT(id_comment_liker) as total_like FROM event_comment_like ecl

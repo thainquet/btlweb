@@ -57,6 +57,25 @@
       </div>     
     </div>
   </div>
+  <div ng-if="isTeacher()">
+    <div class="col-12 col-card">
+      <div class="card">
+          <label>Tên hội thảo: </label>
+          <input type="text" class="card-body" ng-model="newEvent.name">
+        </div>
+      <div class="card">
+        <label>Nội dung: </label>
+        <input type="text" class="card-body" ng-model="newEvent.content">
+      </div>
+      <div class="card">
+        <label>Loại hội thảo: </label>
+        <input type="text" class="card-body" ng-model="newEvent.type">
+      </div>
+      <br>
+      <button type="button" class="btn btn-sm btn-primary" ng-click="onCreateNewEvent()">Tạo hội thảo</button>
+    </div>     
+  </div>
+</div>
   <item-pagination></item-pagination>
 </div>
 </div>

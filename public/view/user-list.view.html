@@ -13,15 +13,15 @@
         <form>
           <div class="form-group">
             <label for="username" class="col-form-label">Tên đăng nhập</label>
-            <input type="text" class="form-control" id="username" ng-model="newUser['username']">
+            <input type="text" class="form-control" id="username" ng-model="newUser['username']" required>
           </div>
           <div class="form-group">
             <label for="fullname" class="col-form-label">Password</label>
-            <input type="text" class="form-control" id="pasword" ng-model="newUser['password']">
+            <input type="text" class="form-control" id="pasword" ng-model="newUser['password']" required>
           </div>
           <div class="form-group">
             <label for="e-mail" class="col-form-label">Email</label>
-            <input type="email" class="form-control" id="email" ng-model="newUser['email']">
+            <input type="email" class="form-control" id="email" ng-model="newUser['email']" required>
           </div>
           <div class="form-group">
             <label for="e-mail">Chức vụ</label><br>
@@ -33,7 +33,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Đóng</button>
-        <button type="button" class="btn btn-primary" ng-click="addAUser()" data-dismiss="modal">Thêm mới</button>
+        <input type="button"  class="btn btn-success" ng-click="addAUser()" data-dismiss="modal">
       </div>
     </div>
   </div>

@@ -55,8 +55,11 @@ angular.module('QASystem')
       if ($window.sessionStorage['isTeacher'] == 1 || $window.sessionStorage['isAdmin'] == 1) return false;
       return true;
     }
-
-    // Cai nay tra ve tat ca cac event dang hoat dong trong bang event
+    $scope.back = function () {
+      $scope.showQuestions = !$scope.showQuestions;
+      $scope.showEvents = true;
+    }
+    // Cai nay tra ve tat ca cac event hoat dong trong bang event
     $http.get('/events')
       .then(function successCallback(data) {
         $scope.listEvents = data.data.data;
@@ -64,7 +67,7 @@ angular.module('QASystem')
         // console.log(data);
         for (let i = 0; i < $scope.listEvents.length; i++) {
           if ($scope.listEvents[i].status == 1) {
-            console.log(i);
+            //console.log(i);
             $scope.listActivingEvents.push($scope.listEvents[i]);
           }
         }
@@ -156,5 +159,51 @@ angular.module('QASystem')
         }, function (err) {
           console.log(err);
         })
+    }
+
+    // Tao 1 hoi thao moi
+    let idUser = $window.sessionStorage['idUser'];
+    $scope.newEvent = {
+      content : "",
+      id_user : idUser,
+      name: "",
+      type: "",
+      status: 1
+    }
+    
+    $scope.onCreateNewEvent = function() {
+      createNewEvent();
+      $scope.newEvent = {
+        content : "",
+        id_user : idUser,
+        name: "",
+        type: "",
+        status: 1
+      }
+    }
+
+    createNewEvent = function() {
+      $http.post('/events/newEvents', $scope.newEvent)
+      .then(function successCallback(data) {
+        $timeout(function() {
+          $http.get('/events')
+          .then(function successCallback(data) {
+            $scope.listEvents = data.data.data;
+            // console.log($scope.listEvents);
+            // console.log(data);
+            for (let i = 0; i < $scope.listEvents.length; i++) {
+              if ($scope.listEvents[i].status == 1) {
+                //console.log(i);
+                $scope.listActivingEvents.push($scope.listEvents[i]);
+            }
+          }
+        }, function (err) {
+          console.log(err);
+      });
+
+        })
+      }, function(err) {
+        console.log(err);
+      })
     }
   })

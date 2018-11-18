@@ -1,5 +1,5 @@
 angular.module('QASystem')
-  .controller('userListCtrl', function ($scope, $http) {
+  .controller('userListCtrl', function ($scope, $http, $timeout) {
     $scope.userList = [];
     $scope.newUser = {
       username: "",
@@ -31,6 +31,7 @@ angular.module('QASystem')
       else if (isTeacher == "1") return "Teacher";
       return "Student";
     }
+
     $http.get('/events/users/getAll')
       .then(function successCallback(data) {
         $scope.userList = data.data.data;
