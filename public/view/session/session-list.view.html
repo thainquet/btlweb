@@ -1,0 +1,37 @@
+<page-header></page-header>
+<br><br>
+<div class="container-fluid content-page__main mt-0">
+  <div class="row">
+    <div class="col-12 d-flex container__header">
+      Danh sách hội thảo của tôi
+    </div>
+  </div>
+  <div class="row" ng-repeat="eventDetail in sessionList">
+    <div class="col-12 col-card">
+      <div class="media border d-flex align-items-center p-2">
+        <div>
+          <img src="../img/qa.png" class="img-responsive" />
+        </div>
+        <div class="media-body ml-2 d-flex flex-column justify-content-around">
+          <span class="infor-1 redtab">
+            <i class="fa fa fa-lock">
+            </i>
+            {{eventDetail.name}}
+          </span>
+          <br>
+          <span class="infor-2">
+            <i class="fa fa-sticky-note-o">
+            </i>
+            Mô tả: {{eventDetail.content}}
+          </span>
+          <span class="infor-2">
+            <i class="fa fa-edit">
+            </i>
+            Đăng bởi: {{eventDetail.creator}}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<page-footer></page-footer>

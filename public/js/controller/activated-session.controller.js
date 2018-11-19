@@ -80,7 +80,22 @@ angular.module('QASystem')
     $scope.listQuestions = [];
     $scope.showQuestions = false;
     $scope.showEvents = true;
-
+    $scope.isAdmin = function () {
+      if ($window.sessionStorage['isAdmin'] == 1) return true;
+      return false;
+    }
+    $scope.isTeacher = function () {
+      if ($window.sessionStorage['isTeacher'] == 1) return true;
+      return false;
+    }
+    $scope.isStudent = function () {
+      if ($window.sessionStorage['isTeacher'] == 1 || $window.sessionStorage['isAdmin'] == 1) return false;
+      return true;
+    }
+    $scope.back = function () {
+      $scope.showQuestions = !$scope.showQuestions;
+      $scope.showEvents = true;
+    }
     // Cai nay tra ve tat ca cac event da dong trong bang event
     $http.get('/events')
     .then(function successCallback(data) {
@@ -89,15 +104,23 @@ angular.module('QASystem')
         for(let i = 0 ; i < listEvents.length ; i++) {
           //console.log($scope.listEvents[i]);
             if(listEvents[i].status == 0) {
-              //console.log(i);
-              //console.log($scope.listSeminar[i]);
+             
                 $scope.listActivedEvents.push(listEvents[i]);
             }
         }
     }, function(err) {
         console.log(err);
     });
-
+    $scope.getEventById = function(idEvent) {
+     $http.get('/events/' + idEvent)
+       .then(function successCallback(data) {
+        //  $scope.showEvents = false;
+        //  $scope.showQuestions = true;
+         $scope.eventDetail = data.data.data[0];
+       }, function (err) {
+         console.log(err);
+       })
+    }
     // Lay tat ca cac cau hoi cua 1 event da dong
     $scope.getQuestions = function(idEvent) {
       $http.get('/events/' + idEvent +'/questions')
@@ -109,6 +132,7 @@ angular.module('QASystem')
       }, function(err) {
           console.log(err);
       })
+      $scope.getEventById(idEvent);
     }
     
     // Mo lai 1 event da dong

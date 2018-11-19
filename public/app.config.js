@@ -12,5 +12,25 @@ angular.module('QASystem', ['ngRoute'])
     controller: 'homeCtrl'
   });
 
+  $routeProvider.when('/question/:idQuestion', {
+    templateUrl: 'view/question/question-content.view.html',
+    controller: 'questionContentCtrl'
+  });
+  
+  $routeProvider.when('/user/list', {
+    templateUrl: 'view/user-list.view.html',
+    controller: 'userListCtrl'
+  });
+
+  $routeProvider.when('/question/account/:idUser', {
+    templateUrl: 'view/question/question-list.view.html',
+    controller: 'questionListCtrl'
+  })
+
+   $routeProvider.when('/event/account/:idUser', {
+     templateUrl: 'view/session/session-list.view.html',
+     controller: 'sessionListCtrl'
+   })
+  
 }])
 

@@ -2601,3 +2601,12 @@ select option {
 .list-item {
   min-height: 70%;
 }
+
+.container__header {
+  background-color: #11866f;
+  color: white;
+  padding: 8px;
+  font-size: 24px;
+  justify-content: center;
+  align-items: center;
+}

@@ -2,6 +2,6 @@ angular.module('QASystem')
   .directive('activatedSession', function() {
     return {
       restrict: 'EA',
-      templateUrl: '../view/activated-session.view.html'
+      templateUrl: '../view/session/activated-session.view.html'
     }
 })

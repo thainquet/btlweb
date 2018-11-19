@@ -1,5 +1,6 @@
 angular.module('QASystem')
-.controller('homeCtrl', ['$scope', function($scope) {
+.controller('homeCtrl', ['$scope', '$window', function($scope, $window) {
+    
     $scope.pageHeader = {
         title: "DANH SÁCH PHIÊN HỎI ĐÁP HOẠT ĐỘNG"
     };
@@ -15,6 +16,7 @@ angular.module('QASystem')
                 $scope.sessionList[i].active = false;
             }
         }
+        
     };
     $scope.isActive = function(index) {
       if ($scope.sessionList[index].active == true) {
@@ -30,6 +32,7 @@ angular.module('QASystem')
     $scope.name = "";
     $scope.isLoggedIn = function () {
         if ($window.sessionStorage['user']) {
+            //console.log("Ahihi: " + $window.sessionStorage['isAdmin']);
             return true;
         } else {
             return false;
@@ -37,6 +40,19 @@ angular.module('QASystem')
     }
     if ($scope.isLoggedIn() == true) {
         let user = JSON.parse($window.sessionStorage['user']);
+        $scope.isAdmin = function() {
+          if ($window.sessionStorage['isAdmin'] == 1) return true;
+          return false;
+        }
+        $scope.isTeacher = function() {
+          if ($window.sessionStorage['isTeacher'] == 1) return true;
+          return false;
+        }
+        $scope.isStudent = function() {
+           if ($window.sessionStorage['isTeacher'] == 1 || $window.sessionStorage['isAdmin'] == 1) return false;
+           return true;
+        }
         $scope.name = user.username;
+        $scope.id = $window.sessionStorage['idUser'];
     } 
 }]);
