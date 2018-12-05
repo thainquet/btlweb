@@ -25,7 +25,9 @@ router.get('/accounts/:id/myevents', controller.getEventByUser)
 router.get('/events', controller.getAllEvent)
 
 router.get('/events/:idEvent', controller.getEventbyID)
+
 router.get('/events/users/getAll', controller.getAllUser)
+
 router.get('/events/questions/getAll', controller.getAllQuest)
 
 router.put('/events/:idEvent/open', controller.openEventById)
@@ -36,7 +38,8 @@ router.delete('/events/:idEvent/delete', controller.deleteEventById)
 
 router.get('/events/:idEvent/questions', controller.getQuestionsOfEvent)
 
-router.post('/events/user/add', controller.createNewUser);
+router.post('/events/user/add', controller.createNewUser)
+
 router.post('/events/:idEvent/questions/newQuestion', controller.createNewQuestionOfEvent)
 
 router.delete('/events/:idEvent/questions/delete/:idQuest', controller.deleteQuestionById)

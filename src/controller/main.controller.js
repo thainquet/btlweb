@@ -280,7 +280,7 @@ var controller = {
     },
     getAllCommentByQuestionId : (req, res) => {
         let idQuest = req.params.idQuest
-        let sql = `SELECT idComment, username as commentor, id_user as id_commentor, 
+        let sql = `SELECT idComment, username as commentor, q.id_user as id_commentor, 
         contentComment FROM event_question q JOIN event_comment c ON 
         q.idQuestion = c.idQuestion JOIN user u ON q.id_user = u.id WHERE q.idQuestion = ` + idQuest
         query(con,sql)
@@ -299,8 +299,8 @@ var controller = {
     createNewComment : (req, res) => {
         let idQuest = req.params.idQuest
         let content = req.body.content;
-        //let id_user = req.body.id_user;
-        let sql = `INSERT INTO event_comment (idQuestion, contentComment) VALUES ("` + idQuest + `","` + content + `")`;
+        let id_user = req.body.id_user;
+        let sql = `INSERT INTO event_comment (idQuestion, contentComment,id_user) VALUES ("` + idQuest + `","` + content + `","` + id_user +`")`;
          
         //console.log(sql);
         query(con, sql)

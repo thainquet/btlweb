@@ -3,7 +3,7 @@ var connection = mysql.createConnection({
   host: 'localhost',
   user: 'root',
   password: '',
-  database: 'btlweb'
+  database: 'btlweb-2'
 })
 connection.connect((error) => {
     if (error) {
